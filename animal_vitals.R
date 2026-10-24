@@ -1,6 +1,6 @@
 # ============================================================
 #  animal_vitals.R
-#  PawWatch — healthy resting vital ranges for many animals.
+#  Prezervia — healthy resting vital ranges for many animals.
 #  Load, summarise, and classify a live reading as normal / abnormal.
 #
 #  Data source: Merck Veterinary Manual, VCA, Cornell Feline Health.

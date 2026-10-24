@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>PawWatch — Animal Vital Tracker</title>
+<title>Prezervia — Animal Vital Tracker</title>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
 <style>
   :root {
@@ -153,7 +153,7 @@
 <body>
 <header>
   <div>
-    <h1>🐾 PawWatch</h1>
+    <h1>🐾 Prezervia</h1>
     <div class="tag">Animal vital tracker — abnormal activity analysis</div>
   </div>
   <div class="controls">
@@ -342,7 +342,7 @@ const MAX_POINTS = 40;
    pet keeps its own name, photo, birthday and custom ranges. */
 let profile = { name: "", photo: "", bday: "", customRanges: null };
 
-function profileKey() { return "pawwatch:" + species + "|" + breed; }
+function profileKey() { return "prezervia:" + species + "|" + breed; }
 
 function loadProfile() {
   try { profile = JSON.parse(localStorage.getItem(profileKey())) || {}; }

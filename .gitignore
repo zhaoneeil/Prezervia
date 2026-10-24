@@ -1,4 +1,4 @@
-# Python virtual environment (installed libraries — not our code)
+# Python virtual environment
 .venv/
 
 # Python caches and build artifacts
@@ -8,11 +8,13 @@ __pycache__/
 build/
 dist/
 
-# Demo data the app writes while running (regenerated on each run)
-pawwatch/pets.json
-pawwatch/history.json
-pawwatch/notifications.json
-pawwatch/last_seen.json
+# Demo data the app writes while running (regenerated each run)
+prezervia/pets.json
+prezervia/history.json
+prezervia/notifications.json
+prezervia/last_seen.json
+prezervia/alert_decisions.json
+prezervia/tags.json
 
 # OS clutter
 .DS_Store

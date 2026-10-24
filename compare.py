@@ -16,7 +16,7 @@ from __future__ import annotations
 
 import argparse
 
-from pawwatch import load_animals, AnimalProfile
+from prezervia import load_animals, AnimalProfile
 
 
 # Every column you can ask for, and how to read it off one animal.
