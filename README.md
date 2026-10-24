@@ -1,6 +1,6 @@
-# PawWatch — animal vital-range data model
+# Prezervia — animal vital-range data model
 
-Background data engine for the PawWatch abnormal-activity tracker.
+Background data engine for the Prezervia abnormal-activity tracker.
 Dependency-free. The dataset (`animal_vitals.csv`) ships inside the package.
 
 ## Install
@@ -12,7 +12,7 @@ pip install -e .
 ## Use it in your app
 
 ```python
-from pawwatch import load_animals, find, check_alarm
+from prezervia import load_animals, find, check_alarm
 
 animals = load_animals()                 # every animal profile
 lab = find("Dog", "Labrador Retriever", "1-6")   # one profile
@@ -46,7 +46,7 @@ it from a motion sensor.
 ## Self-test
 
 ```bash
-python -m pawwatch
+python -m prezervia
 ```
 
 Data source: Merck Veterinary Manual, VCA, Cornell Feline Health, zoo-vet refs.

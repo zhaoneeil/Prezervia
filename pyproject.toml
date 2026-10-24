@@ -3,12 +3,12 @@ requires = ["setuptools>=61"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "pawwatch"
+name = "prezervia"
 version = "0.3.0"
-description = "Animal vital-range data model for the PawWatch abnormal-activity tracker."
+description = "Animal vital-range data model for the Prezervia abnormal-activity tracker."
 readme = "README.md"
 requires-python = ">=3.9"
-authors = [{ name = "PawWatch hackathon team" }]
+authors = [{ name = "Prezervia hackathon team" }]
 license = { text = "MIT" }
 dependencies = []   # core model is dependency-free
 
@@ -16,7 +16,7 @@ dependencies = []   # core model is dependency-free
 charts = ["pandas>=1.5", "matplotlib>=3.6"]   # only needed for summarize.py
 
 [tool.setuptools]
-packages = ["pawwatch"]
+packages = ["prezervia"]
 
 [tool.setuptools.package-data]
-pawwatch = ["animal_vitals.csv"]   # ship the dataset inside the install
+prezervia = ["animal_vitals.csv"]   # ship the dataset inside the install

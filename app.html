@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Prezervia</title>
+<link rel="icon" type="image/png" href="pawwatch_logo.png" />
+<link rel="apple-touch-icon" href="pawwatch_logo.png" />
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+<style>
+  :root{
+    --card:rgba(255,255,255,.045); --card-br:rgba(255,255,255,.09);
+    --ink:#F3EEE9; --muted:#A79C92; --taupe:#B8A796; --good:#7FC9A0;
+    --red:#E0533B; --strava:#FC4C02;
+    --glow:0 1px 0 rgba(255,255,255,.04) inset, 0 18px 40px rgba(0,0,0,.45);
+  }
+  @media (prefers-reduced-motion: reduce){ *{animation:none!important;transition:none!important} }
+  *{box-sizing:border-box}
+  body{margin:0;min-height:100vh;color:var(--ink);
+    background:radial-gradient(130% 90% at 50% 0%, #241f1c 0%, #141210 45%, #0E0C0B 100%);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;line-height:1.45}
+  .app{max-width:460px;margin:0 auto;min-height:100vh;display:flex;flex-direction:column}
+  /* top bar */
+  .bar{display:flex;align-items:center;gap:12px;padding:16px 18px;position:sticky;top:0;
+    background:rgba(16,12,11,.82);backdrop-filter:blur(10px);z-index:10;
+    border-bottom:1px solid var(--card-br)}
+  .bar .logo{width:34px;height:34px;border-radius:9px;object-fit:cover;background:#3a312b}
+  .bar h1{font-size:17px;margin:0;font-weight:650;flex:1}
+  .bar .back{background:none;border:none;color:var(--taupe);font-size:15px;cursor:pointer;
+    padding:4px 6px;width:auto;margin:0}
+  .live{font-size:11px;color:var(--muted)}
+  .dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--good);
+    margin-right:5px;box-shadow:0 0 7px var(--good)}
+  .dot.off{background:#6b625b;box-shadow:none}
+  /* screens */
+  .screen{display:none;flex-direction:column;gap:16px;padding:18px 16px 40px}
+  .screen.active{display:flex}
+  .card{background:var(--card);border:1px solid var(--card-br);border-radius:22px;
+    padding:18px;box-shadow:var(--glow)}
+  .card h2{font-size:12px;margin:0 0 14px;color:var(--taupe);font-weight:600;
+    letter-spacing:.4px;text-transform:uppercase}
+  label{display:block;font-size:12px;color:var(--muted);margin:10px 0 4px}
+  input,select{width:100%;padding:12px 13px;border:1px solid var(--card-br);border-radius:13px;
+    font-size:14px;background:rgba(0,0,0,.25);color:var(--ink)}
+  .row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  button{cursor:pointer;border:none;border-radius:999px;padding:13px 18px;font-size:14px;
+    font-weight:650;width:100%;margin-top:14px}
+  .primary{background:var(--taupe);color:#211b16}
+  .primary:hover{background:#c9b9a8}
+  .ghost{background:rgba(255,255,255,.06);color:var(--ink);border:1px solid var(--card-br)}
+  .ghost:hover{background:rgba(255,255,255,.1)}
+  .btnrow{display:flex;gap:10px}
+  .hero{text-align:center;padding:26px 10px 6px}
+  .hero .big{font-size:26px;font-weight:700;margin:14px 0 6px}
+  .hero p{color:var(--muted);font-size:14px;margin:0 20px}
+  .muted{color:var(--muted);font-size:13px}
+  /* pet list */
+  .petrow{display:flex;align-items:center;gap:14px;padding:14px;border-radius:16px;
+    background:rgba(0,0,0,.22);border:1px solid var(--card-br);cursor:pointer;
+    transition:background .15s,border-color .15s}
+  .petrow:hover{background:rgba(255,255,255,.04);border-color:var(--taupe)}
+  .petrow+.petrow{margin-top:10px}
+  .pfp{width:48px;height:48px;border-radius:14px;background:linear-gradient(135deg,#5a4c42,#3a312b);
+    background-size:cover;background-position:center;display:flex;align-items:center;
+    justify-content:center;font-size:22px;flex-shrink:0}
+  .petrow .nm{font-weight:650;font-size:15px}
+  .petrow .sb{font-size:12px;color:var(--muted)}
+  .statusdot{margin-left:auto;width:12px;height:12px;border-radius:50%}
+  .s-ok{background:var(--good)} .s-alarm{background:var(--red);box-shadow:0 0 8px var(--red)}
+  .s-unknown{background:#6b625b}
+  /* detail stats */
+  .stats{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  .stat{background:rgba(0,0,0,.22);border:1px solid var(--card-br);border-radius:18px;padding:14px}
+  .stat .k{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.4px}
+  .stat .v{font-size:30px;font-weight:700;margin-top:4px;line-height:1}
+  .stat .u{font-size:13px;color:var(--muted);font-weight:500}
+  .reasons{font-size:13px;margin:10px 0 0;padding-left:18px} .reasons li{margin:4px 0}
+  .verdict{font-size:15px;font-weight:700;margin-top:12px}
+  #map{height:190px;border-radius:16px;overflow:hidden;border:1px solid var(--card-br)}
+  .leaflet-tile{filter:brightness(.6) invert(1) contrast(.9) hue-rotate(180deg) saturate(.4)}
+  .chartwrap{position:relative;margin-top:12px}
+  canvas{width:100%;display:block;border-radius:14px;background:rgba(0,0,0,.22);border:1px solid var(--card-br)}
+  .scrub{position:absolute;top:0;bottom:0;width:2px;background:var(--taupe);opacity:.7;pointer-events:none}
+  .hud{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:12px}
+  .hud div{background:rgba(0,0,0,.22);border:1px solid var(--card-br);border-radius:14px;padding:10px;text-align:center}
+  .hud .k{font-size:11px;color:var(--muted)} .hud .v{font-size:16px;font-weight:700}
+  .warn{background:rgba(224,83,59,.12);border:1px solid rgba(224,83,59,.4);color:#f0a393;
+    padding:11px 13px;border-radius:13px;font-weight:600;font-size:13px;margin-top:10px}
+  .ok{background:rgba(127,201,160,.1);border:1px solid rgba(127,201,160,.3);color:var(--good);
+    padding:11px 13px;border-radius:13px;font-weight:600;font-size:13px;margin-top:10px}
+  .pulse{width:14px;height:14px;border-radius:50%;background:var(--strava);animation:pulse 1.8s infinite}
+  @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(252,76,2,.55)}70%{box-shadow:0 0 0 15px rgba(252,76,2,0)}100%{box-shadow:0 0 0 0 rgba(252,76,2,0)}}
+  .drop{border:1.5px dashed var(--card-br);border-radius:14px;padding:14px;text-align:center;
+    cursor:pointer;color:var(--muted);font-size:13px;background:rgba(0,0,0,.18)}
+  .drop:hover{border-color:var(--taupe);color:var(--ink)} .drop b{color:var(--ink)}
+  pre.report{white-space:pre-wrap;font-size:12px;background:rgba(0,0,0,.25);
+    border:1px solid var(--card-br);border-radius:12px;padding:12px;margin-top:10px}
+</style>
+</head>
+<body>
+<div class="app">
+  <div class="bar">
+    <button class="back" id="backBtn" style="display:none" onclick="goPets()">‹ Back</button>
+    <img class="logo" id="logo" alt="" />
+    <h1 id="barTitle">Prezervia</h1>
+    <span class="live" id="apiLive"><span class="dot off"></span>…</span>
+  </div>
+
+  <!-- SCREEN 1: SIGN UP -->
+  <section class="screen active" id="screen-signup">
+    <div class="hero">
+      <div class="big">Welcome to Prezervia</div>
+      <p>Keep watch over the animals you love. Create an account to start.</p>
+    </div>
+    <div class="card">
+      <h2>Create your account</h2>
+      <label>Your name</label><input id="acc_name" placeholder="e.g. Alex" />
+      <label>Email</label><input id="acc_email" type="email" placeholder="you@email.com" />
+      <label>Password</label><input id="acc_pw" type="password" placeholder="At least 8 characters" />
+      <div class="muted" id="pwHint" style="margin-top:6px"></div>
+      <button class="primary" onclick="signUp()">Create account</button>
+      <div class="warn" id="signupErr" style="display:none"></div>
+      <p class="muted" style="text-align:center;margin-top:12px">
+        Already have one? <a href="#" onclick="goPets();return false" style="color:var(--taupe)">Skip to my pets</a>
+      </p>
+    </div>
+  </section>
+
+  <!-- SCREEN 2: MY PETS -->
+  <section class="screen" id="screen-pets">
+    <div class="card">
+      <h2>My pets</h2>
+      <div id="petList"><p class="muted">Loading…</p></div>
+      <button class="ghost" onclick="loadSamples()">Load sample pets</button>
+    </div>
+    <div class="card">
+      <h2>Add a pet</h2>
+      <div style="display:flex;justify-content:center"><div class="pfp" id="newPfp" style="width:84px;height:84px;font-size:34px">🐾</div></div>
+      <label>Photo</label>
+      <div class="drop" id="drop"><b>Add a photo</b><br>tap to choose, or drag one here</div>
+      <input type="file" id="photo" accept="image/*" style="display:none" onchange="loadPhoto(event)" />
+      <div class="row">
+        <div><label>Name</label><input id="p_name" placeholder="Rex" /></div>
+        <div><label>Species</label><input id="p_species" placeholder="Dog" /></div>
+      </div>
+      <div class="row">
+        <div><label>Breed</label><input id="p_breed" placeholder="Chihuahua" /></div>
+        <div><label>Age (years)</label><input id="p_age" placeholder="3" /></div>
+      </div>
+      <button class="primary" onclick="addPet()">Add pet</button>
+      <div class="muted" id="addMsg" style="margin-top:8px"></div>
+    </div>
+  </section>
+
+  <!-- SCREEN 3: PET DETAIL -->
+  <section class="screen" id="screen-pet">
+    <div class="card">
+      <h2 id="petHdr">Wellness summary</h2>
+      <div class="stats">
+        <div class="stat"><div class="k">Heart rate</div><div class="v" id="s_hr">—<span class="u"> bpm</span></div></div>
+        <div class="stat"><div class="k">Temperature</div><div class="v" id="s_temp">—<span class="u"> °C</span></div></div>
+        <div class="stat"><div class="k">Breathing</div><div class="v" id="s_resp">—<span class="u"> /min</span></div></div>
+        <div class="stat"><div class="k">Movement</div><div class="v" id="s_move">—<span class="u"> /100</span></div></div>
+      </div>
+      <div class="muted" id="s_status" style="margin-top:12px"></div>
+      <ul class="reasons" id="reasons"></ul>
+    </div>
+
+    <div class="card">
+      <h2>Collar</h2>
+      <div class="row">
+        <div><label>Connection</label>
+          <select id="d_how"><option value="bluetooth">Bluetooth</option><option value="wifi">WiFi</option></select></div>
+        <div><label>Battery (%)</label><input id="d_batt" value="80" /></div>
+      </div>
+      <button class="ghost" id="liveBtn" onclick="toggleLive()">▶ Start live feed</button>
+      <div id="deviceOut" style="margin-top:8px"></div>
+    </div>
+
+    <div class="card">
+      <h2>Track & timeline</h2>
+      <div id="map"></div>
+      <div class="chartwrap"><canvas id="chart" height="150"></canvas><div class="scrub" id="scrub" style="left:0"></div></div>
+      <div class="hud">
+        <div><div class="k">Pace</div><div class="v" id="h_pace">—</div></div>
+        <div><div class="k">Elevation</div><div class="v" id="h_elev">—</div></div>
+        <div><div class="k">Heart rate</div><div class="v" id="h_hr">—</div></div>
+      </div>
+      <p class="muted" style="margin-top:8px;text-align:center">Drag across the graph — the marker retraces the walk.</p>
+    </div>
+
+    <div class="card">
+      <h2>Vet connect</h2>
+      <p class="muted">A printable report of this pet's recorded data and graphs,
+        for your vet to read. It shows data only — no diagnosis.</p>
+      <button class="primary" onclick="vetPdf()">Open vet report (PDF)</button>
+    </div>
+  </section>
+</div>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script>
+const API="http://127.0.0.1:8808";
+let CURRENT=null, newPhotoURL=null;
+
+/* logo */
+(function(){const l=document.getElementById('logo');l.src="pawwatch_logo.png";l.onerror=()=>l.style.display='none';})();
+
+/* ---- screen router ---- */
+function show(id){
+  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  const back=document.getElementById('backBtn');
+  back.style.display = (id==='screen-pet') ? 'block' : 'none';
+  window.scrollTo(0,0);
+}
+function goPets(){ stopLive(); document.getElementById('barTitle').textContent='Prezervia'; loadPets(); show('screen-pets'); }
+
+function pwStrong(pw){
+  // at least 8 chars, one letter, one number, one symbol
+  return pw.length>=8 && /[A-Za-z]/.test(pw) && /[0-9]/.test(pw) && /[^A-Za-z0-9]/.test(pw);
+}
+function validEmail(e){ return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(e); }
+
+(function(){
+  const pw=document.getElementById('acc_pw'); if(!pw) return;
+  pw.addEventListener('input',()=>{
+    const v=pw.value, hint=document.getElementById('pwHint');
+    if(!v){ hint.textContent=''; return; }
+    if(pwStrong(v)){ hint.textContent='Strong password ✓'; hint.style.color='var(--good)'; }
+    else { hint.textContent='Needs 8+ chars, a letter, a number, and a symbol.'; hint.style.color='var(--muted)'; }
+  });
+})();
+
+function signUp(){
+  const name=document.getElementById('acc_name').value.trim();
+  const email=document.getElementById('acc_email').value.trim();
+  const pw=document.getElementById('acc_pw').value;
+  const err=document.getElementById('signupErr');
+  const problems=[];
+  if(!name) problems.push('Enter your name.');
+  if(!validEmail(email)) problems.push('Enter a valid email, like you@email.com.');
+  if(!pwStrong(pw)) problems.push('Password needs 8+ characters, a letter, a number, and a symbol.');
+  if(problems.length){ err.style.display='block'; err.innerHTML=problems.join('<br>'); return; }
+  err.style.display='none';
+  document.getElementById('barTitle').textContent='Prezervia';
+  goPets();
+}
+
+/* ---- health dot ---- */
+async function ping(){
+  try{const j=await (await fetch(API+"/api/health")).json();
+    if(j.ok) apiLive.innerHTML='<span class="dot"></span>Live';}
+  catch(e){ apiLive.innerHTML='<span class="dot off"></span>offline'; }
+}
+
+/* ---- color engine ---- */
+function colorFor(v,lo,hi){
+  if(v>hi) return mix("#FF7A00","#D32F2F",Math.min(1,(v-hi)/(hi*0.4+1)));
+  if(v<lo) return mix("#F0F8FF","#004AAD",Math.min(1,(lo-v)/(lo*0.6+1)));
+  return "#7FC9A0";
+}
+function mix(a,b,t){const pa=hx(a),pb=hx(b);const c=pa.map((v,i)=>Math.round(v+(pb[i]-v)*t));return `rgb(${c[0]},${c[1]},${c[2]})`;}
+function hx(h){return [1,3,5].map(i=>parseInt(h.slice(i,i+2),16));}
+
+/* ---- SCREEN 2: pets ---- */
+function emojiFor(sp){
+  const m={Dog:'🐕',Cat:'🐈',Rabbit:'🐇',Horse:'🐎',Goat:'🐐',Sheep:'🐑',
+    Cow:'🐄',Cattle:'🐄',Pig:'🐖',Chicken:'🐔',Ferret:'🦫',Hamster:'🐹',
+    GuineaPig:'🐹',Llama:'🦙',Deer:'🦌',Bear:'🐻',Lion:'🦁',Tiger:'🐅',
+    Elephant:'🐘',Giraffe:'🦒',Zebra:'🦓'};
+  return m[sp]||'🐾';
+}
+async function loadPets(){
+  const list=document.getElementById('petList');
+  list.innerHTML='<p class="muted">Loading…</p>';
+  try{
+    const j=await (await fetch(API+"/api/pets")).json();
+    const pets=j.pets||[];
+    if(!pets.length){ list.innerHTML='<p class="muted">No pets yet. Add your first below.</p>'; return; }
+    list.innerHTML='';
+    pets.forEach(row=>{
+      const p=row.pet, name=p.pet_name||p.name||'';
+      const st=row.status||{};
+      const cls = st.state==='silent'||st.state==='no_data' ? 's-unknown' : (st.alarm ? 's-alarm':'s-ok');
+      const el=document.createElement('div'); el.className='petrow';
+      el.onclick=()=>openPet(name,p);
+      el.innerHTML=`<div class="pfp">${emojiFor(p.species)}</div>
+        <div><div class="nm">${name}</div><div class="sb">${p.species||''} · ${p.breed||''}</div></div>
+        <div class="statusdot ${cls}"></div>`;
+      list.appendChild(el);
+    });
+  }catch(e){ list.innerHTML='<p class="warn">Could not reach the app server.</p>'; }
+}
+async function loadSamples(){
+  const list=document.getElementById('petList');
+  list.innerHTML='<p class="muted">Adding a variety of pets…</p>';
+  await fetch(API+"/api/pets/sample",{method:"POST",
+    headers:{'Content-Type':'application/json'},body:JSON.stringify({count:5})});
+  loadPets();
+}
+function loadPhoto(e){const f=e.target.files[0];if(!f)return;newPhotoURL=URL.createObjectURL(f);
+  const p=document.getElementById('newPfp');p.style.backgroundImage=`url(${newPhotoURL})`;p.textContent='';
+  document.getElementById('drop').innerHTML='<b>Photo added</b><br>tap to change';}
+(function(){const d=document.getElementById('drop'),i=document.getElementById('photo');
+  d.addEventListener('click',()=>i.click());
+  d.addEventListener('dragover',e=>e.preventDefault());
+  d.addEventListener('drop',e=>{e.preventDefault();const f=e.dataTransfer.files[0];if(f){i.files=e.dataTransfer.files;loadPhoto({target:{files:[f]}});}});})();
+async function addPet(){
+  const body={name:p_name.value,species:p_species.value,breed:p_breed.value,age:p_age.value};
+  const msg=document.getElementById('addMsg');
+  if(!body.name||!body.species||!body.breed||!body.age){ msg.textContent='Please fill name, species, breed and age.'; return; }
+  const j=await (await fetch(API+"/api/intake",{method:"POST",headers:{'Content-Type':'application/json'},body:JSON.stringify(body)})).json();
+  if(j.ok){ msg.textContent=`Added ${j.data.pet_name}. Matched to ${j.data.profile_key}.`;
+    p_name.value=p_species.value=p_breed.value=p_age.value=''; loadPets(); }
+  else msg.textContent="Error: "+j.error;
+}
+
+/* ---- SCREEN 3: one pet ---- */
+function openPet(name,pet){
+  CURRENT={name,pet};
+  document.getElementById('barTitle').textContent=name;
+  document.getElementById('petHdr').textContent=name+" — wellness";
+  document.getElementById('s_status').textContent='Start the live feed to see readings.';
+  ['s_hr','s_temp','s_resp','s_move'].forEach(id=>document.getElementById(id).innerHTML='—');
+  document.getElementById('reasons').innerHTML='';
+  document.getElementById('bundleOut').style.display='none';
+  show('screen-pet');
+  setTimeout(()=>{ initMap(); chartData=buildSeries(); drawChart(); syncTo(chartData.length-1);
+    const c=document.getElementById('chart');
+    c.onmousemove=scrub; c.ontouchmove=scrub; },50);
+}
+function fillSummary(hr,tp,rs,mv,alarm){
+  s_hr.innerHTML=`${hr}<span class="u"> bpm</span>`; s_hr.style.color=colorFor(hr,100,140);
+  s_temp.innerHTML=`${tp}<span class="u"> °C</span>`; s_temp.style.color=colorFor(tp,38.3,39.2);
+  s_resp.innerHTML=`${rs}<span class="u"> /min</span>`; s_resp.style.color=colorFor(rs,18,34);
+  s_move.innerHTML=`${mv}<span class="u"> /100</span>`; s_move.style.color=colorFor(mv,20,60);
+  s_status.textContent=alarm?'Abnormal — check your vet.':'Looks normal.';
+  s_status.style.color=alarm?'var(--red)':'var(--good)';
+}
+
+/* ---- live feed ---- */
+let liveTimer=null;
+function stopLive(){ if(liveTimer){clearInterval(liveTimer);liveTimer=null;const b=document.getElementById('liveBtn');if(b)b.textContent='▶ Start live feed';} }
+function toggleLive(){
+  const b=document.getElementById('liveBtn');
+  if(liveTimer){ stopLive(); return; }
+  b.textContent='⏸ Stop live feed'; liveTick(); liveTimer=setInterval(liveTick,3000);
+}
+async function liveTick(){
+  if(!CURRENT) return;
+  const body={name:CURRENT.name,how:d_how.value,battery_pct:+d_batt.value};
+  try{
+    const j=await (await fetch(API+"/api/device/upload",{method:"POST",headers:{'Content-Type':'application/json'},body:JSON.stringify(body)})).json();
+    const d=j.data||{}; const v=d.vitals;
+    if(v){ fillSummary(Math.round(v.hr),(+v.temp).toFixed(1),Math.round(v.resp),Math.round(v.movement),d.alarm);
+      const ul=document.getElementById('reasons'); ul.innerHTML='';
+      (d.reasons||[]).forEach(t=>{const li=document.createElement('li');li.textContent=t;ul.appendChild(li);}); }
+    document.getElementById('deviceOut').innerHTML = d.alarm
+      ? `<div class="warn">Live over ${d.how}. Abnormal — app notified.</div>`
+      : `<div class="ok">Live over ${d.how}. Streaming…</div>`;
+  }catch(e){}
+}
+
+/* ---- vet PDF ---- */
+function vetPdf(){
+  if(!CURRENT) return;
+  window.open(API+"/api/vet/pdf?name="+encodeURIComponent(CURRENT.name),"_blank");
+}
+
+/* ---- map + chart ---- */
+let chartData=[],routePts=[],mapObj=null,doneLine=null,nowMarker=null;
+function buildRoute(){
+  // Amherst, Massachusetts — a fresh random walk each time
+  const base=[42.3732,-72.5199];
+  const p=[base.slice()];
+  let lat=base[0], lon=base[1];
+  let a=Math.random()*Math.PI*2;              // start heading
+  for(let i=1;i<40;i++){
+    a += (Math.random()-0.5)*0.9;             // wander
+    lat += Math.cos(a)*0.0006*(0.6+Math.random()*0.8);
+    lon += Math.sin(a)*0.0006*(0.6+Math.random()*0.8);
+    p.push([lat,lon]);
+  }
+  return p;
+}
+function buildSeries(){const d=[];for(let i=0;i<40;i++)d.push({pace:4+Math.sin(i/5)*1.2,elev:20+Math.sin(i/8)*14+i*0.4,hr:90+Math.sin(i/4)*25+(i>30?(i-30)*6:0)});return d;}
+function drawChart(hi){
+  const c=document.getElementById('chart');const w=c.clientWidth;c.width=w;const h=c.height;const ctx=c.getContext('2d');ctx.clearRect(0,0,w,h);
+  [['pace',2,7,'#8A7E76',0],['elev',10,60,'#b07a46',1],['hr',60,170,'#FC4C02',0]].forEach(([k,lo,hhi,col,fill])=>{
+    if(fill){ctx.beginPath();chartData.forEach((d,i)=>{const x=i/(chartData.length-1)*w;const y=h-((d[k]-lo)/(hhi-lo))*h;i?ctx.lineTo(x,y):ctx.moveTo(x,y);});ctx.lineTo(w,h);ctx.lineTo(0,h);ctx.closePath();ctx.fillStyle='rgba(176,122,70,.10)';ctx.fill();}
+    ctx.beginPath();ctx.lineWidth=k==='hr'?2.4:1.6;
+    chartData.forEach((d,i)=>{const x=i/(chartData.length-1)*w;const y=h-((d[k]-lo)/(hhi-lo))*h;ctx.strokeStyle=k==='hr'?colorFor(d.hr,80,150):col;i?ctx.lineTo(x,y):ctx.moveTo(x,y);});ctx.stroke();
+  });
+  if(hi!=null&&chartData[hi]){const x=hi/(chartData.length-1)*w;const d=chartData[hi];const y=h-((d.hr-60)/110)*h;ctx.beginPath();ctx.arc(x,y,4,0,7);ctx.fillStyle=colorFor(d.hr,80,150);ctx.fill();}
+}
+function syncTo(i){
+  i=Math.max(0,Math.min(chartData.length-1,i));const d=chartData[i];if(!d)return;
+  h_pace.textContent=d.pace.toFixed(1)+"′/km";h_elev.textContent=Math.round(d.elev)+" m";
+  h_hr.textContent=Math.round(d.hr)+" bpm";h_hr.style.color=colorFor(d.hr,80,150);
+  const c=document.getElementById('chart');document.getElementById('scrub').style.left=(i/(chartData.length-1)*c.clientWidth)+'px';
+  drawChart(i);
+  if(doneLine)doneLine.setLatLngs(routePts.slice(0,i+1));
+  if(nowMarker&&routePts[i])nowMarker.setLatLng(routePts[i]);
+}
+function scrub(e){const c=document.getElementById('chart');const r=c.getBoundingClientRect();const x=Math.max(0,Math.min(r.width,(e.touches?e.touches[0].clientX:e.clientX)-r.left));syncTo(Math.round(x/r.width*(chartData.length-1)));}
+function initMap(){
+  if(mapObj){mapObj.remove();mapObj=null;}
+  routePts=buildRoute();
+  mapObj=L.map('map',{zoomControl:false,attributionControl:false}).setView(routePts[0],14);
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(mapObj);
+  L.polyline(routePts,{color:'#FC4C02',weight:4,opacity:.25}).addTo(mapObj);
+  doneLine=L.polyline([routePts[0]],{color:'#FC4C02',weight:5}).addTo(mapObj);
+  L.circleMarker(routePts[0],{color:'#7FC9A0',radius:5,fillOpacity:1}).addTo(mapObj);
+  nowMarker=L.marker(routePts[0],{icon:L.divIcon({className:'',html:'<div class="pulse"></div>',iconSize:[14,14]})}).addTo(mapObj);
+  mapObj.fitBounds(routePts,{padding:[18,18]});
+}
+
+/* ---- boot ---- */
+ping(); setInterval(ping,5000);
+window.addEventListener('resize',()=>{if(chartData.length)drawChart();});
+</script>
+</body>
+</html>

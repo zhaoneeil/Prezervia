@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-summarize.py  —  PawWatch data summary + charts.
+summarize.py  —  Prezervia data summary + charts.
 
 Reads animal_vitals.csv, prints a plain-language summary, and saves charts
 the main app can display. Also writes animal_vitals.json so the web app can
@@ -43,7 +43,7 @@ def load() -> pd.DataFrame:
 # ------------------------------------------------------------------
 def write_summary(df: pd.DataFrame) -> None:
     lines = []
-    lines.append("PawWatch — animal vital summary")
+    lines.append("Prezervia — animal vital summary")
     lines.append("=" * 40)
     lines.append(f"Animals in dataset: {df['breed_or_type'].nunique()} "
                  f"types across {df['species'].nunique()} species.\n")
