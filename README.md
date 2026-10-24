@@ -1,52 +1,23 @@
-# PawWatch — animal vital-range data model
+# Prezervia
 
-Background data engine for the PawWatch abnormal-activity tracker.
-Dependency-free. The dataset (`animal_vitals.csv`) ships inside the package.
+Collar telemetry for pets and livestock. One Next.js + Tailwind codebase, packaged as native iOS and Android apps with Capacitor.
 
-## Install
-
-```bash
-pip install -e .
+## Run in the browser
+```
+npm install
+npm run dev
 ```
 
-## Use it in your app
-
-```python
-from pawwatch import load_animals, find, check_alarm
-
-animals = load_animals()                 # every animal profile
-lab = find("Dog", "Labrador Retriever", "1-6")   # one profile
-
-# A live sensor reading comes in from the collar:
-result = check_alarm(lab, {"hr": 150, "resp": 40, "temp": 40.0, "movement": 10})
-print(result.alarm)       # True  -> raise the alert in the UI
-print(result.abnormal)    # ['hr=150 (HIGH)', 'resp=40 (HIGH)', ...]
+## Build the native apps
+Requires Xcode (iOS) and/or Android Studio (Android).
 ```
-
-## What is in the data
-
-- 66 animal profiles across 18 species.
-- Priority targets: **Dog** (24 breed/age rows) and **Cat** (14 breeds).
-- Groups: `Pet`, `Farm`, `Zoo`.
-- Per profile: heart rate, breathing, body temp (°C), a 0–100 movement score,
-  height in cm, age range in years, and typical lifespan.
-
-## Signals
-
-| signal key | meaning | unit |
-|---|---|---|
-| `hr` | heart rate | beats / minute |
-| `resp` | breathing | breaths / minute |
-| `temp` | body temperature | °C |
-| `movement` | activity proxy | 0–100 |
-
-`movement` is an activity stand-in, not a clinical vital. A real collar builds
-it from a motion sensor.
-
-## Self-test
-
-```bash
-python -m pawwatch
+npm install
+npm run build        # exports the web app to ./out
+npx cap sync         # copies it into ios/ and android/
+npx cap open ios     # then press Run in Xcode (set your Team under Signing)
+npx cap open android # then press Run in Android Studio
 ```
+After changing any web code, run `npm run build && npx cap sync` again.
 
-Data source: Merck Veterinary Manual, VCA, Cornell Feline Health, zoo-vet refs.
+## Importing data
+Tap "Import data" and choose a CSV or JSON file (or paste). CSV columns: `name, species, temp_c` plus optional `heart_rate, respiration`; oldest row first, one reading per 10 minutes, at least 14 per animal. A sample CSV is available in the import sheet.
