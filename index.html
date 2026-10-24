@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>PawWatch — Animal Vital Tracker</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<style>
+  :root {
+    --bg: #0f1420;
+    --panel: #1a2234;
+    --panel-2: #222d44;
+    --text: #e8edf6;
+    --muted: #9aa7bd;
+    --accent: #4da3ff;
+    --ok: #3ad29f;
+    --warn: #ffb020;
+    --bad: #ff5468;
+    --border: #2c3850;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+  }
+  header {
+    padding: 18px 24px;
+    background: var(--panel);
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+  header h1 { font-size: 20px; margin: 0; }
+  header .tag { color: var(--muted); font-size: 13px; }
+  .controls { margin-left: auto; display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
+  select, button {
+    background: var(--panel-2);
+    color: var(--text);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 8px 12px;
+    font-size: 14px;
+    cursor: pointer;
+  }
+  button.primary { background: var(--accent); color: #06101e; border-color: var(--accent); font-weight: 600; }
+  button.danger { background: var(--bad); color: #220308; border-color: var(--bad); font-weight: 600; }
+  button.ghost { background: transparent; }
+  main { padding: 20px 24px; max-width: 1200px; margin: 0 auto; }
+  .alert-banner {
+    display: none;
+    background: var(--bad);
+    color: #220308;
+    padding: 16px 20px;
+    border-radius: 12px;
+    font-size: 17px;
+    font-weight: 700;
+    margin-bottom: 18px;
+    align-items: center;
+    gap: 12px;
+  }
+  .alert-banner.show { display: flex; animation: pulse 1s infinite; }
+  @keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: .72; } }
+  @media (prefers-reduced-motion: reduce) { .alert-banner.show { animation: none; } }
+  .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; }
+  .card {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 16px;
+  }
+  .card.alarm { border-color: var(--bad); box-shadow: 0 0 0 2px rgba(255,84,104,.35); }
+  .card .label { color: var(--muted); font-size: 13px; display: flex; justify-content: space-between; }
+  .card .value { font-size: 34px; font-weight: 700; margin: 6px 0 2px; }
+  .card .unit { font-size: 15px; color: var(--muted); font-weight: 400; }
+  .card .range { font-size: 12px; color: var(--muted); }
+  .status-dot { width: 10px; height: 10px; border-radius: 50%; display: inline-block; }
+  .status-ok { background: var(--ok); }
+  .status-warn { background: var(--warn); }
+  .status-bad { background: var(--bad); }
+  .chart-wrap { background: var(--panel); border: 1px solid var(--border); border-radius: 14px; padding: 16px; margin-top: 18px; }
+  .pet-meta { font-size: 13px; color: var(--muted); margin-top: 4px; }
+  .legend-note { font-size: 12px; color: var(--muted); margin-top: 10px; }
+
+  /* ---- Pet profile ---- */
+  .profile {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 16px;
+    margin-bottom: 18px;
+    display: flex;
+    gap: 18px;
+    align-items: flex-start;
+    flex-wrap: wrap;
+  }
+  .profile .photo-wrap { position: relative; }
+  .profile .photo {
+    width: 96px; height: 96px;
+    border-radius: 16px;
+    object-fit: cover;
+    background: var(--panel-2);
+    border: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 40px; color: var(--muted);
+  }
+  .profile .photo-btn {
+    position: absolute; bottom: -6px; right: -6px;
+    background: var(--accent); color: #06101e;
+    border: none; border-radius: 50%;
+    width: 30px; height: 30px; font-size: 15px;
+    cursor: pointer; font-weight: 700;
+  }
+  .profile .fields { flex: 1; min-width: 240px; display: grid; gap: 10px; }
+  .profile .row { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
+  .profile label.fld { font-size: 12px; color: var(--muted); display: block; margin-bottom: 3px; }
+  .profile input {
+    background: var(--panel-2);
+    color: var(--text);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 8px 10px;
+    font-size: 14px;
+  }
+  .profile .field { flex: 1; min-width: 150px; }
+  .birthday-note { font-size: 13px; color: var(--muted); margin-top: 2px; }
+  .birthday-note.today { color: var(--warn); font-weight: 700; }
+
+  .birthday-banner {
+    display: none;
+    background: var(--warn);
+    color: #231600;
+    padding: 14px 20px;
+    border-radius: 12px;
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 14px;
+    align-items: center;
+    gap: 10px;
+  }
+  .birthday-banner.show { display: flex; }
+
+  .edit-ranges { border-top: 1px solid var(--border); margin-top: 6px; padding-top: 10px; }
+  .edit-ranges summary { cursor: pointer; font-size: 13px; color: var(--accent); }
+  .edit-ranges .grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(170px,1fr)); gap: 10px; margin-top: 10px; }
+  .edit-ranges .pair { display: flex; gap: 6px; align-items: center; }
+  .edit-ranges .pair input { width: 70px; }
+</style>
+</head>
+<body>
+<header>
+  <div>
+    <h1>🐾 PawWatch</h1>
+    <div class="tag">Animal vital tracker — abnormal activity analysis</div>
+  </div>
+  <div class="controls">
+    <label class="tag">Animal</label>
+    <select id="speciesSel"></select>
+    <label class="tag">Breed</label>
+    <select id="breedSel"></select>
+    <button id="simBtn" class="danger">⚠ Simulate distress</button>
+    <button id="resetBtn" class="ghost">Reset to calm</button>
+  </div>
+</header>
+
+<main>
+  <div id="birthdayBanner" class="birthday-banner"></div>
+  <div id="alertBanner" class="alert-banner"></div>
+
+  <!-- ---- Pet profile ---- -->
+  <div class="profile">
+    <div class="photo-wrap">
+      <div class="photo" id="photo">🐾</div>
+      <button class="photo-btn" id="photoBtn" title="Upload a photo">＋</button>
+      <input type="file" id="photoInput" accept="image/*" style="display:none" />
+    </div>
+    <div class="fields">
+      <div class="row">
+        <div class="field">
+          <label class="fld" for="nameInput">Pet name</label>
+          <input id="nameInput" type="text" placeholder="e.g. Rex" style="width:100%" />
+        </div>
+        <div class="field">
+          <label class="fld" for="bdayInput">Birthday</label>
+          <input id="bdayInput" type="date" style="width:100%" />
+        </div>
+      </div>
+      <div class="birthday-note" id="bdayNote"></div>
+
+      <details class="edit-ranges">
+        <summary>Edit normal ranges for this pet</summary>
+        <div class="grid" id="rangeEditor"></div>
+        <div class="row" style="margin-top:10px">
+          <button id="saveRangesBtn" class="primary">Save ranges</button>
+          <button id="resetRangesBtn" class="ghost">Back to breed default</button>
+        </div>
+      </details>
+    </div>
+  </div>
+
+  <div class="pet-meta" id="petMeta"></div>
+
+  <div class="cards" id="cards"></div>
+
+  <div class="chart-wrap">
+    <canvas id="chart" height="110"></canvas>
+    <div class="legend-note">Lines are live readings. Shaded zones are the healthy resting range for this breed. A reading outside the zone trips an alarm.</div>
+  </div>
+</main>
+
+<script>
+/* ============================================================
+   REFERENCE DATA — healthy RESTING ranges by species / breed.
+   Sources (vet-published figures):
+     - VCA Animal Hospitals vital-sign guides (dog & cat HR, temp, resp)
+     - Merck Veterinary Manual (normal physiologic values by species)
+     - American Kennel Club breed-size vital notes
+   Ranges are approximate resting figures for a HEALTHY adult animal.
+   Small/fast-hearted breeds sit at the high end of HR; giant breeds low.
+   ============================================================ */
+const DATA = {
+  Dog: {
+    temp: { min: 38.3, max: 39.2, unit: "°C" },   // ~101–102.5°F
+    breeds: {
+      "Chihuahua (toy)":      { hr: [100, 140], resp: [18, 34], activity: [20, 60] },
+      "Beagle (small)":       { hr: [90, 130],  resp: [16, 30], activity: [30, 80] },
+      "Labrador (large)":     { hr: [70, 110],  resp: [14, 26], activity: [40, 90] },
+      "German Shepherd (lg)": { hr: [70, 110],  resp: [14, 26], activity: [40, 90] },
+      "Great Dane (giant)":   { hr: [60, 100],  resp: [12, 22], activity: [25, 70] },
+    }
+  },
+  Cat: {
+    temp: { min: 38.1, max: 39.2, unit: "°C" },    // ~100.5–102.5°F
+    breeds: {
+      "Domestic Shorthair":   { hr: [140, 200], resp: [20, 30], activity: [20, 70] },
+      "Maine Coon (large)":   { hr: [120, 180], resp: [18, 28], activity: [25, 75] },
+      "Siamese":              { hr: [150, 210], resp: [22, 34], activity: [30, 85] },
+    }
+  },
+  Rabbit: {
+    temp: { min: 38.5, max: 40.0, unit: "°C" },    // ~101.3–104°F
+    breeds: {
+      "Mini Rex":             { hr: [180, 250], resp: [32, 60], activity: [15, 55] },
+      "Flemish Giant":        { hr: [140, 200], resp: [30, 55], activity: [10, 45] },
+    }
+  },
+  Ferret: {
+    temp: { min: 37.8, max: 40.0, unit: "°C" },    // ~100–104°F
+    breeds: {
+      "Standard Ferret":      { hr: [180, 250], resp: [33, 36], activity: [30, 90] },
+    }
+  },
+
+  /* -------- FARM ANIMALS -------- */
+  Cow: {
+    temp: { min: 38.0, max: 39.3, unit: "°C" },    // ~100.4–102.8°F (Merck)
+    breeds: {
+      "Dairy cow (Holstein)": { hr: [48, 84],  resp: [26, 50], activity: [20, 70] },
+      "Beef cow (Angus)":     { hr: [40, 70],  resp: [20, 40], activity: [20, 70] },
+      "Calf (young)":         { hr: [100, 140], resp: [30, 60], activity: [30, 85] },
+    }
+  },
+  Horse: {
+    temp: { min: 37.2, max: 38.3, unit: "°C" },    // ~99–101°F (Merck)
+    breeds: {
+      "Adult horse":          { hr: [28, 44],  resp: [8, 16],  activity: [20, 80] },
+      "Pony (small)":         { hr: [32, 48],  resp: [10, 18], activity: [25, 80] },
+      "Foal (young)":         { hr: [70, 100], resp: [20, 40], activity: [30, 90] },
+    }
+  },
+  Sheep: {
+    temp: { min: 38.5, max: 40.0, unit: "°C" },    // ~101.3–104°F (Merck)
+    breeds: {
+      "Adult sheep":          { hr: [60, 90],  resp: [16, 34], activity: [20, 70] },
+      "Lamb (young)":         { hr: [100, 130], resp: [20, 40], activity: [30, 85] },
+    }
+  },
+  Goat: {
+    temp: { min: 38.5, max: 39.7, unit: "°C" },    // ~101.3–103.5°F (Merck)
+    breeds: {
+      "Adult goat":           { hr: [70, 90],  resp: [15, 30], activity: [25, 80] },
+      "Kid (young)":          { hr: [100, 130], resp: [20, 40], activity: [35, 90] },
+    }
+  },
+  Pig: {
+    temp: { min: 38.7, max: 39.8, unit: "°C" },    // ~101.6–103.6°F (Merck)
+    breeds: {
+      "Adult pig":            { hr: [60, 90],  resp: [12, 24], activity: [20, 70] },
+      "Piglet (young)":       { hr: [100, 130], resp: [20, 40], activity: [30, 85] },
+    }
+  },
+
+  /* -------- LARGE / EXOTIC MAMMALS -------- */
+  Cattle_Bull: {
+    temp: { min: 38.0, max: 39.3, unit: "°C" },
+    breeds: {
+      "Adult bull":           { hr: [36, 60],  resp: [18, 36], activity: [20, 70] },
+    }
+  },
+  Elephant: {
+    temp: { min: 35.9, max: 37.2, unit: "°C" },    // ~96.5–99°F
+    breeds: {
+      "African elephant":     { hr: [25, 35],  resp: [4, 12],  activity: [15, 60] },
+      "Asian elephant":       { hr: [28, 40],  resp: [4, 12],  activity: [15, 60] },
+    }
+  },
+  Llama: {
+    temp: { min: 37.5, max: 38.9, unit: "°C" },    // ~99.5–102°F
+    breeds: {
+      "Llama / Alpaca":       { hr: [60, 90],  resp: [10, 30], activity: [20, 75] },
+    }
+  },
+  Deer: {
+    temp: { min: 38.3, max: 39.4, unit: "°C" },
+    breeds: {
+      "Farmed deer":          { hr: [40, 70],  resp: [12, 30], activity: [25, 85] },
+    }
+  }
+};
+
+/* ---- Signals we watch (position handled separately) ---- */
+const SIGNALS = [
+  { key: "hr",       name: "Heart rate",   unit: "bpm" },
+  { key: "resp",     name: "Breathing",    unit: "br/min" },
+  { key: "temp",     name: "Body temp",    unit: "°C" },
+  { key: "activity", name: "Activity",     unit: "/100" },
+];
+
+/* ============================================================
+   STATE
+   ============================================================ */
+let species = "Dog";
+let breed = "Labrador (large)";
+let distress = false;                 // the "make the pet sick" switch
+const history = { labels: [], hr: [], resp: [], temp: [], activity: [] };
+const MAX_POINTS = 40;
+
+/* Per-pet profile saved in this browser. Keyed by species+breed so each
+   pet keeps its own name, photo, birthday and custom ranges. */
+let profile = { name: "", photo: "", bday: "", customRanges: null };
+
+function profileKey() { return "pawwatch:" + species + "|" + breed; }
+
+function loadProfile() {
+  try { profile = JSON.parse(localStorage.getItem(profileKey())) || {}; }
+  catch { profile = {}; }
+  profile = Object.assign({ name: "", photo: "", bday: "", customRanges: null }, profile);
+}
+function saveProfile() {
+  localStorage.setItem(profileKey(), JSON.stringify(profile));
+}
+
+/* current normal ranges for the chosen pet.
+   Uses the pet's CUSTOM ranges if the owner set them, else breed defaults. */
+function ranges() {
+  if (profile.customRanges) return profile.customRanges;
+  const b = DATA[species].breeds[breed];
+  const t = DATA[species].temp;
+  return {
+    hr:       b.hr,
+    resp:     b.resp,
+    activity: b.activity,
+    temp:     [t.min, t.max],
+  };
+}
+
+/* breed default ranges (ignores custom overrides) */
+function breedRanges() {
+  const b = DATA[species].breeds[breed];
+  const t = DATA[species].temp;
+  return { hr: b.hr, resp: b.resp, activity: b.activity, temp: [t.min, t.max] };
+}
+
+
+/* make ONE fake reading for a signal.
+   calm  -> a value inside the healthy range.
+   distress -> pushed well outside (high HR/resp/temp, low activity = collapse). */
+function fakeReading(key) {
+  const r = ranges()[key];
+  const mid = (r[0] + r[1]) / 2;
+  const span = (r[1] - r[0]);
+  if (!distress) {
+    // gentle wander inside the range
+    return +(r[0] + Math.random() * span).toFixed(key === "temp" ? 1 : 0);
+  }
+  // distress: spike heart/resp/temp above max, drop activity below min
+  if (key === "activity") return +Math.max(0, r[0] - span * (0.6 + Math.random())).toFixed(0);
+  if (key === "temp")     return +(r[1] + 0.8 + Math.random() * 1.2).toFixed(1);
+  return +(r[1] + span * (0.4 + Math.random() * 0.6)).toFixed(0);
+}
+
+/* is a value outside its healthy range? */
+function isAbnormal(key, val) {
+  const r = ranges()[key];
+  return val < r[0] || val > r[1];
+}
+
+/* ============================================================
+   UI BUILD
+   ============================================================ */
+const speciesSel = document.getElementById("speciesSel");
+const breedSel   = document.getElementById("breedSel");
+const cardsEl    = document.getElementById("cards");
+const bannerEl   = document.getElementById("alertBanner");
+const petMetaEl  = document.getElementById("petMeta");
+
+/* ---- profile elements ---- */
+const photoEl       = document.getElementById("photo");
+const photoBtn      = document.getElementById("photoBtn");
+const photoInput    = document.getElementById("photoInput");
+const nameInput     = document.getElementById("nameInput");
+const bdayInput     = document.getElementById("bdayInput");
+const bdayNote      = document.getElementById("bdayNote");
+const bdayBanner    = document.getElementById("birthdayBanner");
+const rangeEditor   = document.getElementById("rangeEditor");
+const saveRangesBtn = document.getElementById("saveRangesBtn");
+const resetRangesBtn= document.getElementById("resetRangesBtn");
+
+
+Object.keys(DATA).forEach(s => {
+  const o = document.createElement("option");
+  o.value = s; o.textContent = s.replace(/_/g, " ");
+  speciesSel.appendChild(o);
+});
+
+function fillBreeds() {
+  breedSel.innerHTML = "";
+  Object.keys(DATA[species].breeds).forEach(b => {
+    const o = document.createElement("option");
+    o.value = b; o.textContent = b;
+    breedSel.appendChild(o);
+  });
+  breed = breedSel.value = Object.keys(DATA[species].breeds)[0];
+}
+
+function buildCards() {
+  cardsEl.innerHTML = "";
+  SIGNALS.forEach(sig => {
+    const r = ranges()[sig.key];
+    const el = document.createElement("div");
+    el.className = "card";
+    el.id = "card-" + sig.key;
+    el.innerHTML = `
+      <div class="label"><span>${sig.name}</span><span class="status-dot status-ok" id="dot-${sig.key}"></span></div>
+      <div class="value" id="val-${sig.key}">--<span class="unit"> ${sig.unit}</span></div>
+      <div class="range">normal ${r[0]}–${r[1]} ${sig.unit}</div>`;
+    cardsEl.appendChild(el);
+  });
+}
+
+/* ---- show the profile for the current pet in the form ---- */
+function renderProfile() {
+  nameInput.value = profile.name || "";
+  bdayInput.value = profile.bday || "";
+  if (profile.photo) {
+    photoEl.textContent = "";
+    photoEl.style.backgroundImage = `url(${profile.photo})`;
+    photoEl.style.backgroundSize = "cover";
+    photoEl.style.backgroundPosition = "center";
+  } else {
+    photoEl.style.backgroundImage = "";
+    photoEl.textContent = "🐾";
+  }
+  renderBirthday();
+  renderRangeEditor();
+}
+
+/* ---- birthday: age + "is it today?" banner ---- */
+function renderBirthday() {
+  bdayBanner.classList.remove("show");
+  bdayNote.classList.remove("today");
+
+  if (!profile.bday) { bdayNote.textContent = "No birthday set."; return; }
+
+  const b = new Date(profile.bday + "T00:00:00");
+  const now = new Date();
+
+  // age in whole years
+  let age = now.getFullYear() - b.getFullYear();
+  const beforeBday =
+    now.getMonth() < b.getMonth() ||
+    (now.getMonth() === b.getMonth() && now.getDate() < b.getDate());
+  if (beforeBday) age--;
+
+  const isToday = now.getMonth() === b.getMonth() && now.getDate() === b.getDate();
+
+  // days until next birthday
+  const today0 = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+  let next = new Date(now.getFullYear(), b.getMonth(), b.getDate());
+  if (next < today0) next = new Date(now.getFullYear() + 1, b.getMonth(), b.getDate());
+  const days = Math.round((next - today0) / 86400000);
+
+  const who = profile.name || "Your pet";
+  if (isToday) {
+    bdayNote.textContent = `🎂 Today is ${who}'s birthday! Turning ${age}.`;
+    bdayNote.classList.add("today");
+    bdayBanner.textContent = `🎉 Happy birthday, ${who}! ${age} years old today. 🎂`;
+    bdayBanner.classList.add("show");
+  } else {
+    bdayNote.textContent =
+      `${who} is ${age} years old. Next birthday in ${days} day${days === 1 ? "" : "s"}.`;
+  }
+}
+
+/* ---- editable normal-range table ---- */
+function renderRangeEditor() {
+  const r = ranges();
+  rangeEditor.innerHTML = "";
+  SIGNALS.forEach(sig => {
+    const lo = r[sig.key][0], hi = r[sig.key][1];
+    const cell = document.createElement("div");
+    cell.innerHTML =
+      `<label class="fld">${sig.name} (${sig.unit})</label>` +
+      `<div class="pair">` +
+      `<input type="number" step="0.1" id="rng-${sig.key}-lo" value="${lo}" />` +
+      `<span style="color:var(--muted)">to</span>` +
+      `<input type="number" step="0.1" id="rng-${sig.key}-hi" value="${hi}" />` +
+      `</div>`;
+    rangeEditor.appendChild(cell);
+  });
+}
+
+function updatePetMeta() {
+  const t = DATA[species].temp;
+  petMetaEl.textContent =
+    `${species} · ${breed} — healthy resting temp ${t.min}–${t.max}${t.unit}. ` +
+    `Watching 4 signals, 1 reading per second.`;
+}
+
+/* ============================================================
+   CHART
+   ============================================================ */
+const ctx = document.getElementById("chart").getContext("2d");
+const chart = new Chart(ctx, {
+  type: "line",
+  data: {
+    labels: history.labels,
+    datasets: [
+      { label: "Heart rate (bpm)", data: history.hr, borderColor: "#ff5468", tension: .3, pointRadius: 0 },
+      { label: "Breathing (br/min)", data: history.resp, borderColor: "#4da3ff", tension: .3, pointRadius: 0 },
+      { label: "Activity (/100)", data: history.activity, borderColor: "#3ad29f", tension: .3, pointRadius: 0 },
+    ]
+  },
+  options: {
+    animation: false,
+    responsive: true,
+    scales: {
+      x: { ticks: { color: "#9aa7bd", maxTicksLimit: 8 }, grid: { color: "#22304a" } },
+      y: { ticks: { color: "#9aa7bd" }, grid: { color: "#22304a" } }
+    },
+    plugins: { legend: { labels: { color: "#e8edf6" } } }
+  }
+});
+
+/* ============================================================
+   LIVE LOOP
+   ============================================================ */
+function tick() {
+  const now = new Date().toLocaleTimeString([], { minute: "2-digit", second: "2-digit" });
+  const reads = {};
+  SIGNALS.forEach(sig => { reads[sig.key] = fakeReading(sig.key); });
+
+  let anyAbnormal = [];
+
+  SIGNALS.forEach(sig => {
+    const val = reads[sig.key];
+    document.getElementById("val-" + sig.key).innerHTML =
+      `${val}<span class="unit"> ${sig.unit}</span>`;
+    const bad = isAbnormal(sig.key, val);
+    const dot = document.getElementById("dot-" + sig.key);
+    dot.className = "status-dot " + (bad ? "status-bad" : "status-ok");
+    document.getElementById("card-" + sig.key).className = "card" + (bad ? " alarm" : "");
+    if (bad) anyAbnormal.push(sig.name);
+  });
+
+  // push to history for the chart
+  history.labels.push(now);
+  history.hr.push(reads.hr);
+  history.resp.push(reads.resp);
+  history.activity.push(reads.activity);
+  if (history.labels.length > MAX_POINTS) {
+    ["labels","hr","resp","activity"].forEach(k => history[k].shift());
+  }
+  chart.update();
+
+  // alarm banner
+  if (anyAbnormal.length) {
+    bannerEl.classList.add("show");
+    bannerEl.textContent = `⚠ ALERT — ${breed}: ${anyAbnormal.join(", ")} outside normal range. Check the animal now.`;
+  } else {
+    bannerEl.classList.remove("show");
+  }
+}
+
+/* ============================================================
+   EVENTS
+   ============================================================ */
+speciesSel.addEventListener("change", () => {
+  species = speciesSel.value;
+  fillBreeds();
+  reset();
+});
+breedSel.addEventListener("change", () => { breed = breedSel.value; reset(); });
+document.getElementById("simBtn").addEventListener("click", () => { distress = true; });
+document.getElementById("resetBtn").addEventListener("click", () => { distress = false; });
+
+/* ---- profile events ---- */
+photoBtn.addEventListener("click", () => photoInput.click());
+photoInput.addEventListener("change", () => {
+  const file = photoInput.files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = () => {
+    profile.photo = reader.result;   // image stored as a data URL in this browser
+    saveProfile();
+    renderProfile();
+  };
+  reader.readAsDataURL(file);
+});
+nameInput.addEventListener("input", () => {
+  profile.name = nameInput.value.trim();
+  saveProfile();
+  renderBirthday();
+  updatePetMeta();
+});
+bdayInput.addEventListener("change", () => {
+  profile.bday = bdayInput.value;
+  saveProfile();
+  renderBirthday();
+});
+saveRangesBtn.addEventListener("click", () => {
+  const custom = {};
+  SIGNALS.forEach(sig => {
+    const lo = parseFloat(document.getElementById(`rng-${sig.key}-lo`).value);
+    const hi = parseFloat(document.getElementById(`rng-${sig.key}-hi`).value);
+    custom[sig.key] = [lo, hi];
+  });
+  profile.customRanges = custom;
+  saveProfile();
+  reset();
+});
+resetRangesBtn.addEventListener("click", () => {
+  profile.customRanges = null;
+  saveProfile();
+  reset();
+});
+
+function reset() {
+  ["labels","hr","resp","activity","temp"].forEach(k => history[k].length = 0);
+  loadProfile();
+  buildCards();
+  renderProfile();
+  updatePetMeta();
+  bannerEl.classList.remove("show");
+}
+
+/* ---- boot ---- */
+fillBreeds();
+reset();
+setInterval(tick, 1000);
+tick();
+</script>
+</body>
+</html>

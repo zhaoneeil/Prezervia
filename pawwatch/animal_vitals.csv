@@ -1,0 +1,109 @@
+animal_group,species,breed_or_type,age_range_yrs,typical_lifespan_yrs,size_band_cm,height_cm_min,height_cm_max,hr_min,hr_max,resp_min,resp_max,temp_min_c,temp_max_c,movement_score_min,movement_score_max,source
+Pet,Dog,Chihuahua,0-1,14-16,xs_15_25cm,15,25,120,160,20,40,38.3,39.5,40,95,Merck/VCA
+Pet,Dog,Chihuahua,1-10,14-16,xs_15_25cm,15,25,100,140,18,34,38.3,39.2,20,60,Merck/VCA
+Pet,Dog,Chihuahua,10-16,14-16,xs_15_25cm,15,25,90,130,16,32,38.0,39.2,10,45,Merck/VCA
+Pet,Dog,Yorkshire Terrier,0-1,13-16,xs_18_23cm,18,23,120,160,20,40,38.3,39.5,35,90,Merck/VCA
+Pet,Dog,Yorkshire Terrier,1-9,13-16,xs_18_23cm,18,23,100,140,18,34,38.3,39.2,25,70,Merck/VCA
+Pet,Dog,Yorkshire Terrier,9-16,13-16,xs_18_23cm,18,23,90,130,16,32,38.0,39.2,15,55,Merck/VCA
+Pet,Dog,Pomeranian,1-12,12-16,xs_18_28cm,18,28,100,140,18,34,38.3,39.2,25,70,Merck/VCA
+Pet,Dog,Dachshund,1-12,12-16,xs_20_23cm,20,23,100,140,18,32,38.3,39.2,25,70,Merck/VCA
+Pet,Dog,French Bulldog,0-1,10-14,s_28_33cm,28,33,110,150,18,34,38.3,39.5,30,80,Merck/VCA
+Pet,Dog,French Bulldog,1-8,10-14,s_28_33cm,28,33,90,130,16,30,38.3,39.2,25,70,Merck/VCA
+Pet,Dog,French Bulldog,8-14,10-14,s_28_33cm,28,33,80,120,15,28,38.0,39.2,15,55,Merck/VCA
+Pet,Dog,Beagle,0-1,12-15,s_33_41cm,33,41,110,150,18,34,38.3,39.5,40,90,Merck/VCA
+Pet,Dog,Beagle,1-9,12-15,s_33_41cm,33,41,90,130,16,30,38.3,39.2,30,80,Merck/VCA
+Pet,Dog,Beagle,9-15,12-15,s_33_41cm,33,41,80,120,15,28,38.0,39.2,20,65,Merck/VCA
+Pet,Dog,Border Collie,1-9,12-15,m_46_56cm,46,56,80,120,14,28,38.3,39.2,45,95,Merck/VCA
+Pet,Dog,Border Collie,9-15,12-15,m_46_56cm,46,56,75,115,13,26,38.0,39.2,30,80,Merck/VCA
+Pet,Dog,Labrador Retriever,0-1,10-12,l_55_62cm,55,62,110,150,18,34,38.3,39.5,45,95,Merck/VCA
+Pet,Dog,Labrador Retriever,1-6,10-12,l_55_62cm,55,62,70,110,14,26,38.3,39.2,40,90,Merck/VCA
+Pet,Dog,Labrador Retriever,6-12,10-12,l_55_62cm,55,62,65,100,12,24,38.0,39.2,25,70,Merck/VCA
+Pet,Dog,German Shepherd,0-1,9-13,l_55_65cm,55,65,100,140,18,34,38.3,39.5,45,95,Merck/VCA
+Pet,Dog,German Shepherd,1-7,9-13,l_55_65cm,55,65,70,110,14,26,38.3,39.2,40,90,Merck/VCA
+Pet,Dog,German Shepherd,7-13,9-13,l_55_65cm,55,65,65,100,12,24,38.0,39.2,25,70,Merck/VCA
+Pet,Dog,Golden Retriever,1-7,10-12,l_55_61cm,55,61,70,110,14,26,38.3,39.2,40,90,Merck/VCA
+Pet,Dog,Golden Retriever,7-12,10-12,l_55_61cm,55,61,65,100,12,24,38.0,39.2,25,70,Merck/VCA
+Pet,Dog,Great Dane,0-1,8-10,xl_71_86cm,71,86,100,140,16,30,38.3,39.5,35,85,Merck/VCA
+Pet,Dog,Great Dane,1-6,8-10,xl_71_86cm,71,86,60,100,12,22,38.3,39.2,25,70,Merck/VCA
+Pet,Dog,Great Dane,6-10,8-10,xl_71_86cm,71,86,55,95,10,20,38.0,39.2,15,55,Merck/VCA
+Pet,Cat,Domestic Shorthair,0-1,13-17,xs_23_25cm,23,25,160,220,25,40,38.1,39.5,40,95,Merck/Cornell
+Pet,Cat,Domestic Shorthair,1-11,13-17,xs_23_25cm,23,25,140,200,20,30,38.1,39.2,20,70,Merck/Cornell
+Pet,Cat,Domestic Shorthair,11-17,13-17,xs_23_25cm,23,25,130,190,18,30,38.0,39.2,10,55,Merck/Cornell
+Pet,Cat,Domestic Longhair,0-1,12-16,xs_23_28cm,23,28,160,220,25,40,38.1,39.5,40,95,Merck/Cornell
+Pet,Cat,Domestic Longhair,1-11,12-16,xs_23_28cm,23,28,140,200,20,30,38.1,39.2,20,70,Merck/Cornell
+Pet,Cat,Domestic Longhair,11-16,12-16,xs_23_28cm,23,28,130,190,18,30,38.0,39.2,10,55,Merck/Cornell
+Pet,Cat,Siamese,0-1,15-20,xs_21_25cm,21,25,170,230,26,42,38.1,39.5,45,95,Merck/Cornell
+Pet,Cat,Siamese,1-14,15-20,xs_21_25cm,21,25,150,210,22,34,38.1,39.2,30,85,Merck/Cornell
+Pet,Cat,Siamese,14-20,15-20,xs_21_25cm,21,25,140,200,20,32,38.0,39.2,20,70,Merck/Cornell
+Pet,Cat,Persian,0-1,12-17,xs_25_38cm,25,38,160,220,24,38,38.1,39.5,30,80,Merck/Cornell
+Pet,Cat,Persian,1-12,12-17,xs_25_38cm,25,38,140,200,20,30,38.1,39.2,15,60,Merck/Cornell
+Pet,Cat,Persian,12-17,12-17,xs_25_38cm,25,38,130,190,18,28,38.0,39.2,10,50,Merck/Cornell
+Pet,Cat,Maine Coon,0-1,12-15,s_25_40cm,25,40,150,210,22,34,38.1,39.5,35,90,Merck/Cornell
+Pet,Cat,Maine Coon,1-10,12-15,s_25_40cm,25,40,120,180,18,28,38.1,39.2,25,75,Merck/Cornell
+Pet,Cat,Maine Coon,10-15,12-15,s_25_40cm,25,40,115,170,16,26,38.0,39.2,15,60,Merck/Cornell
+Pet,Cat,Ragdoll,0-1,12-17,s_23_28cm,23,28,150,210,22,34,38.1,39.5,30,85,Merck/Cornell
+Pet,Cat,Ragdoll,1-12,12-17,s_23_28cm,23,28,120,180,18,28,38.1,39.2,20,70,Merck/Cornell
+Pet,Cat,Ragdoll,12-17,12-17,s_23_28cm,23,28,115,170,16,26,38.0,39.2,10,55,Merck/Cornell
+Pet,Cat,Bengal,0-1,12-16,xs_20_25cm,20,25,170,230,26,42,38.1,39.5,50,95,Merck/Cornell
+Pet,Cat,Bengal,1-12,12-16,xs_20_25cm,20,25,150,210,22,34,38.1,39.2,35,90,Merck/Cornell
+Pet,Cat,Bengal,12-16,12-16,xs_20_25cm,20,25,140,200,20,32,38.0,39.2,20,75,Merck/Cornell
+Pet,Cat,British Shorthair,1-14,12-17,xs_30_35cm,30,35,140,200,20,30,38.1,39.2,15,65,Merck/Cornell
+Pet,Cat,British Shorthair,14-17,12-17,xs_30_35cm,30,35,130,190,18,28,38.0,39.2,10,50,Merck/Cornell
+Pet,Cat,Sphynx,1-13,8-14,xs_20_25cm,20,25,150,210,22,34,38.1,39.5,25,80,Merck/Cornell
+Pet,Cat,Scottish Fold,1-13,11-15,xs_20_25cm,20,25,140,200,20,30,38.1,39.2,20,70,Merck/Cornell
+Pet,Cat,Abyssinian,1-13,12-15,xs_20_25cm,20,25,150,210,22,34,38.1,39.2,35,90,Merck/Cornell
+Pet,Cat,Russian Blue,1-15,15-20,xs_23_28cm,23,28,140,200,20,30,38.1,39.2,20,70,Merck/Cornell
+Pet,Cat,Norwegian Forest,1-14,14-16,s_23_30cm,23,30,120,180,18,28,38.1,39.2,25,75,Merck/Cornell
+Pet,Cat,Birman,1-14,12-16,xs_20_25cm,20,25,140,200,20,30,38.1,39.2,20,70,Merck/Cornell
+Pet,Cat,Burmese,1-15,16-18,xs_20_25cm,20,25,150,210,22,34,38.1,39.2,30,85,Merck/Cornell
+Pet,Cat,Devon Rex,1-13,9-15,xs_18_25cm,18,25,150,210,22,34,38.1,39.5,30,85,Merck/Cornell
+Pet,Cat,Oriental Shorthair,1-14,12-15,xs_20_25cm,20,25,160,220,24,36,38.1,39.2,35,90,Merck/Cornell
+Pet,Cat,Exotic Shorthair,1-13,12-15,xs_25_30cm,25,30,140,200,20,30,38.1,39.2,15,60,Merck/Cornell
+Pet,Cat,American Shorthair,1-15,15-20,xs_23_30cm,23,30,140,200,20,30,38.1,39.2,20,70,Merck/Cornell
+Pet,Rabbit,Netherland Dwarf,0-1,10-12,xs_15_20cm,15,20,200,280,35,65,38.5,40.0,20,65,Merck
+Pet,Rabbit,Netherland Dwarf,1-10,10-12,xs_15_20cm,15,20,180,250,32,60,38.5,40.0,15,55,Merck
+Pet,Rabbit,Holland Lop,1-9,7-12,xs_18_25cm,18,25,180,250,32,60,38.5,40.0,15,55,Merck
+Pet,Rabbit,Mini Rex,1-8,8-12,xs_20_30cm,20,30,180,250,32,60,38.5,40.0,15,55,Merck
+Pet,Rabbit,Lionhead,1-9,7-10,xs_20_28cm,20,28,180,250,32,60,38.5,40.0,15,55,Merck
+Pet,Rabbit,New Zealand White,1-8,7-10,s_35_45cm,35,45,160,220,30,55,38.5,40.0,12,50,Merck
+Pet,Rabbit,Flemish Giant,1-8,8-12,s_45_55cm,45,55,140,200,30,55,38.5,40.0,10,45,Merck
+Pet,Ferret,Standard Ferret,0-1,6-8,xs_13_18cm,13,18,200,280,34,40,37.8,40.0,40,95,Merck
+Pet,Ferret,Standard Ferret,1-6,6-8,xs_13_18cm,13,18,180,250,33,36,37.8,40.0,30,90,Merck
+Pet,Ferret,Angora Ferret,1-6,6-8,xs_13_20cm,13,20,180,250,33,36,37.8,40.0,30,90,Merck
+Pet,GuineaPig,American Guinea Pig,1-7,5-8,xs_10_13cm,10,13,230,300,42,100,37.2,39.5,20,70,Merck
+Pet,GuineaPig,Abyssinian Guinea Pig,1-7,5-8,xs_10_13cm,10,13,230,300,42,100,37.2,39.5,20,70,Merck
+Pet,Hamster,Syrian Hamster,0-2,2-3,xs_5_10cm,5,10,300,500,35,135,36.2,37.5,30,90,Merck
+Pet,Hamster,Dwarf Hamster,0-2,2-3,xs_5_8cm,5,8,300,500,35,135,36.2,37.5,30,90,Merck
+Farm,Cow,Holstein Dairy,0-1,18-22,m_80_110cm,80,110,100,140,30,60,38.0,39.3,30,85,Merck
+Farm,Cow,Holstein Dairy,1-12,18-22,xxl_140_165cm,140,165,48,84,26,50,38.0,39.3,20,70,Merck
+Farm,Cow,Jersey Dairy,1-15,18-22,xl_115_135cm,115,135,48,84,26,50,38.0,39.3,20,70,Merck
+Farm,Cow,Angus Beef,1-12,18-22,xxl_130_150cm,130,150,40,70,20,40,38.0,39.3,20,70,Merck
+Farm,Cow,Hereford Beef,1-12,18-22,xxl_125_145cm,125,145,40,70,20,40,38.0,39.3,20,70,Merck
+Farm,Horse,Thoroughbred,0-1,25-30,l_100_120cm,100,120,70,100,20,40,37.2,38.3,30,90,Merck
+Farm,Horse,Thoroughbred,1-18,25-30,xxl_155_170cm,155,170,28,44,8,16,37.2,38.3,20,80,Merck
+Farm,Horse,Thoroughbred,18-30,25-30,xxl_155_170cm,155,170,30,48,10,18,37.2,38.3,15,65,Merck
+Farm,Horse,Arabian,1-25,25-35,xl_144_155cm,144,155,28,44,8,16,37.2,38.3,25,85,Merck
+Farm,Horse,Clydesdale,1-20,20-25,xxxl_163_183cm,163,183,26,40,8,16,37.2,38.3,15,70,Merck
+Farm,Horse,Shetland Pony,1-25,25-30,m_70_107cm,70,107,32,48,10,18,37.2,38.3,25,80,Merck
+Farm,Sheep,Merino,1-14,10-14,m_60_90cm,60,90,60,90,16,34,38.5,40.0,20,70,Merck
+Farm,Sheep,Suffolk,1-15,10-15,m_65_95cm,65,95,60,90,16,34,38.5,40.0,20,70,Merck
+Farm,Sheep,Lamb,0-1,10-15,s_40_55cm,40,55,100,130,20,40,38.5,40.0,30,85,Merck
+Farm,Goat,Nubian,1-15,12-18,m_75_95cm,75,95,70,90,15,30,38.5,39.7,25,80,Merck
+Farm,Goat,Boer,1-12,12-15,m_60_90cm,60,90,70,90,15,30,38.5,39.7,25,80,Merck
+Farm,Goat,Pygmy,1-15,12-15,s_40_58cm,40,58,70,95,15,32,38.5,39.7,25,85,Merck
+Farm,Pig,Yorkshire,1-12,15-20,l_80_100cm,80,100,60,90,12,24,38.7,39.8,20,70,Merck
+Farm,Pig,Berkshire,1-12,15-20,l_70_90cm,70,90,60,90,12,24,38.7,39.8,20,70,Merck
+Farm,Pig,Piglet,0-1,15-20,xs_20_35cm,20,35,100,130,20,40,38.7,39.8,30,85,Merck
+Farm,Chicken,Laying Hen,0-8,5-10,xs_30_45cm,30,45,250,350,15,30,40.6,41.7,20,80,Merck
+Farm,Chicken,Broiler,0-2,5-7,xs_25_40cm,25,40,250,350,15,30,40.6,41.7,15,70,Merck
+Zoo,Cattle,Adult Bull,1-20,18-20,xxl_160_185cm,160,185,36,60,18,36,38.0,39.3,20,70,Merck
+Zoo,Elephant,African Elephant,0-15,60-70,xxl_120_200cm,120,200,30,50,6,14,35.9,37.2,20,65,Merck/zoo-vet
+Zoo,Elephant,African Elephant,15-70,60-70,xxxl_300_400cm,300,400,25,35,4,12,35.9,37.2,15,60,Merck/zoo-vet
+Zoo,Elephant,Asian Elephant,15-70,60-70,xxxl_250_300cm,250,300,28,40,4,12,35.9,37.2,15,60,Merck/zoo-vet
+Zoo,Lion,African Lion,2-16,15-16,l_100_120cm,100,120,40,76,10,30,38.0,39.3,15,80,Merck/zoo-vet
+Zoo,Tiger,Bengal Tiger,2-18,16-18,l_90_110cm,90,110,40,70,10,30,37.8,39.3,15,80,Merck/zoo-vet
+Zoo,Giraffe,Reticulated Giraffe,2-25,20-25,xxxl_450_550cm,450,550,40,90,8,20,37.5,39.0,15,70,zoo-vet
+Zoo,Bear,Brown Bear,2-30,20-30,xl_90_150cm,90,150,40,70,15,30,37.0,38.3,10,70,zoo-vet
+Zoo,Zebra,Plains Zebra,1-25,20-25,l_120_140cm,120,140,34,52,10,20,37.5,38.5,20,80,zoo-vet
+Zoo,Llama,Llama/Alpaca,1-25,15-25,l_90_120cm,90,120,60,90,10,30,37.5,38.9,20,75,Merck
+Zoo,Deer,Farmed Deer,1-20,10-20,m_80_120cm,80,120,40,70,12,30,38.3,39.4,25,85,Merck

@@ -1,0 +1,29 @@
+sound_type,applies_to,is_normal,hz_min,hz_max,loud_min,loud_max,sec_min,sec_max,urgency,plain_meaning,what_to_do
+bark,Dog,yes,500,2000,55,100,0.1,2,0,Your dog is talking or alert.,Nothing. This is a happy normal sound.
+whine,Dog,no,400,3000,20,55,0.5,5,2,Your dog may be in pain scared or needs something.,Check on your dog. Watch for limping or hiding.
+growl,Dog,no,80,500,30,70,0.3,4,2,Your dog feels threatened or is guarding.,Give space. Look for what is upsetting them.
+yelp,Dog,no,800,4000,60,100,0.05,0.6,3,Sudden sharp cry. Your dog may be hurt right now.,Check your dog's body now for injury.
+howl,Dog,yes,200,1500,40,90,1.5,10,1,Your dog is calling out or lonely.,Company usually helps.
+cough,Dog,no,100,1200,30,75,0.1,0.8,3,Repeated coughing can mean a chest or heart problem.,Call a vet if it keeps happening.
+pant,Dog,yes,150,900,10,40,2,30,0,Normal cooling or excitement.,Nothing unless very heavy for a long time.
+meow,Cat,yes,300,3000,20,70,0.3,2,0,Your cat is talking to you.,Nothing. Normal cat chat.
+purr,Cat,yes,20,150,5,35,2,30,0,Your cat is calm.,Nothing. Usually contentment.
+hiss,Cat,no,2000,8000,40,90,0.3,2,2,Your cat feels scared or cornered.,Give space and remove the threat.
+yowl,Cat,no,400,2000,55,100,1,6,2,Loud drawn-out cry. Pain stress or distress.,Check on your cat. Call a vet if it repeats.
+growl_cat,Cat,no,100,600,30,70,0.5,4,2,Your cat is warning you to back off.,Give space.
+cough_cat,Cat,no,200,1500,25,70,0.1,0.8,3,Coughing or wheezing can mean asthma or illness.,Call a vet if it keeps happening.
+cry_kitten,Cat,no,500,4000,30,80,0.3,3,2,A kitten crying a lot may be cold or hungry.,Warm and feed. Check on it.
+low_moo,Cow,yes,50,400,40,90,0.5,4,0,Normal herd call.,Nothing.
+distress_bellow,Cow,no,100,800,70,100,1,6,3,Loud repeated bellowing can mean pain or separation.,Check the animal and the herd.
+neigh,Horse,yes,100,2000,45,95,0.5,3,0,Normal horse call.,Nothing.
+groan_horse,Horse,no,50,300,30,70,1,6,3,Groaning can mean colic or belly pain.,Call a vet. Colic is urgent.
+bleat,Sheep,yes,200,2000,35,85,0.3,3,0,Normal sheep or goat call.,Nothing.
+distress_bleat,Sheep,no,300,3000,55,100,0.3,3,2,Fast repeated bleating can mean distress or separation.,Check the animal.
+squeal_pig,Pig,no,500,4000,60,100,0.2,2,2,Loud squealing can mean fear or pain.,Check the animal.
+grunt_pig,Pig,yes,80,600,20,65,0.2,2,0,Normal pig chatter.,Nothing.
+roar,Lion,yes,40,500,70,100,1,5,0,Normal territorial call.,Nothing. Expected for big cats.
+distress_call_big,Lion,no,200,2000,55,100,0.5,4,3,An unusual high cry can mean pain or trouble.,Alert the keeper.
+trumpet,Elephant,yes,100,1000,60,100,0.5,4,0,Normal elephant call.,Nothing.
+rumble_distress,Elephant,no,5,40,30,80,1,8,2,Unusual low rumbling can signal stress.,Alert the keeper.
+generic_distress,Any,no,300,4000,50,100,0.1,6,3,An unusual loud or sharp cry for this animal.,Check the animal. Call a vet or keeper if it repeats.
+silence_unusual,Any,no,0,0,0,5,30,999,1,Too quiet for too long from a usually vocal animal.,Check the animal is okay and moving.
