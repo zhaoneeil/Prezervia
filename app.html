@@ -408,7 +408,12 @@ function initMap(){
   if(mapObj){mapObj.remove();mapObj=null;}
   routePts=buildRoute();
   mapObj=L.map('map',{zoomControl:false,attributionControl:false}).setView(routePts[0],14);
-  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(mapObj);
+  // Google Maps tiles; if Google is unreachable, fall back to OpenStreetMap so it ALWAYS loads
+  const google=L.tileLayer('https://mt1.google.com/vt/lyrs=m&x={x}&y={y}&z={z}',{subdomains:['mt0','mt1','mt2','mt3'],maxZoom:20});
+  const osm=L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png');
+  let fellBack=false;
+  google.on('tileerror',()=>{ if(!fellBack){ fellBack=true; mapObj.removeLayer(google); osm.addTo(mapObj); } });
+  google.addTo(mapObj);
   L.polyline(routePts,{color:'#FC4C02',weight:4,opacity:.25}).addTo(mapObj);
   doneLine=L.polyline([routePts[0]],{color:'#FC4C02',weight:5}).addTo(mapObj);
   L.circleMarker(routePts[0],{color:'#7FC9A0',radius:5,fillOpacity:1}).addTo(mapObj);
