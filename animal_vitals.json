@@ -1,0 +1,1703 @@
+{
+  "Dog": {
+    "temp": {
+      "min": 38.3,
+      "max": 39.5,
+      "unit": "°C"
+    },
+    "breeds": {
+      "Chihuahua — age 0-1 yr (15-25 cm, lifespan 14-16 yr)": {
+        "hr": [
+          120,
+          160
+        ],
+        "resp": [
+          20,
+          40
+        ],
+        "activity": [
+          40,
+          95
+        ]
+      },
+      "Chihuahua — age 1-10 yr (15-25 cm, lifespan 14-16 yr)": {
+        "hr": [
+          100,
+          140
+        ],
+        "resp": [
+          18,
+          34
+        ],
+        "activity": [
+          20,
+          60
+        ]
+      },
+      "Chihuahua — age 10-16 yr (15-25 cm, lifespan 14-16 yr)": {
+        "hr": [
+          90,
+          130
+        ],
+        "resp": [
+          16,
+          32
+        ],
+        "activity": [
+          10,
+          45
+        ]
+      },
+      "Yorkshire Terrier — age 0-1 yr (18-23 cm, lifespan 13-16 yr)": {
+        "hr": [
+          120,
+          160
+        ],
+        "resp": [
+          20,
+          40
+        ],
+        "activity": [
+          35,
+          90
+        ]
+      },
+      "Yorkshire Terrier — age 1-9 yr (18-23 cm, lifespan 13-16 yr)": {
+        "hr": [
+          100,
+          140
+        ],
+        "resp": [
+          18,
+          34
+        ],
+        "activity": [
+          25,
+          70
+        ]
+      },
+      "Yorkshire Terrier — age 9-16 yr (18-23 cm, lifespan 13-16 yr)": {
+        "hr": [
+          90,
+          130
+        ],
+        "resp": [
+          16,
+          32
+        ],
+        "activity": [
+          15,
+          55
+        ]
+      },
+      "Pomeranian — age 1-12 yr (18-28 cm, lifespan 12-16 yr)": {
+        "hr": [
+          100,
+          140
+        ],
+        "resp": [
+          18,
+          34
+        ],
+        "activity": [
+          25,
+          70
+        ]
+      },
+      "Dachshund — age 1-12 yr (20-23 cm, lifespan 12-16 yr)": {
+        "hr": [
+          100,
+          140
+        ],
+        "resp": [
+          18,
+          32
+        ],
+        "activity": [
+          25,
+          70
+        ]
+      },
+      "French Bulldog — age 0-1 yr (28-33 cm, lifespan 10-14 yr)": {
+        "hr": [
+          110,
+          150
+        ],
+        "resp": [
+          18,
+          34
+        ],
+        "activity": [
+          30,
+          80
+        ]
+      },
+      "French Bulldog — age 1-8 yr (28-33 cm, lifespan 10-14 yr)": {
+        "hr": [
+          90,
+          130
+        ],
+        "resp": [
+          16,
+          30
+        ],
+        "activity": [
+          25,
+          70
+        ]
+      },
+      "French Bulldog — age 8-14 yr (28-33 cm, lifespan 10-14 yr)": {
+        "hr": [
+          80,
+          120
+        ],
+        "resp": [
+          15,
+          28
+        ],
+        "activity": [
+          15,
+          55
+        ]
+      },
+      "Beagle — age 0-1 yr (33-41 cm, lifespan 12-15 yr)": {
+        "hr": [
+          110,
+          150
+        ],
+        "resp": [
+          18,
+          34
+        ],
+        "activity": [
+          40,
+          90
+        ]
+      },
+      "Beagle — age 1-9 yr (33-41 cm, lifespan 12-15 yr)": {
+        "hr": [
+          90,
+          130
+        ],
+        "resp": [
+          16,
+          30
+        ],
+        "activity": [
+          30,
+          80
+        ]
+      },
+      "Beagle — age 9-15 yr (33-41 cm, lifespan 12-15 yr)": {
+        "hr": [
+          80,
+          120
+        ],
+        "resp": [
+          15,
+          28
+        ],
+        "activity": [
+          20,
+          65
+        ]
+      },
+      "Border Collie — age 1-9 yr (46-56 cm, lifespan 12-15 yr)": {
+        "hr": [
+          80,
+          120
+        ],
+        "resp": [
+          14,
+          28
+        ],
+        "activity": [
+          45,
+          95
+        ]
+      },
+      "Border Collie — age 9-15 yr (46-56 cm, lifespan 12-15 yr)": {
+        "hr": [
+          75,
+          115
+        ],
+        "resp": [
+          13,
+          26
+        ],
+        "activity": [
+          30,
+          80
+        ]
+      },
+      "Labrador Retriever — age 0-1 yr (55-62 cm, lifespan 10-12 yr)": {
+        "hr": [
+          110,
+          150
+        ],
+        "resp": [
+          18,
+          34
+        ],
+        "activity": [
+          45,
+          95
+        ]
+      },
+      "Labrador Retriever — age 1-6 yr (55-62 cm, lifespan 10-12 yr)": {
+        "hr": [
+          70,
+          110
+        ],
+        "resp": [
+          14,
+          26
+        ],
+        "activity": [
+          40,
+          90
+        ]
+      },
+      "Labrador Retriever — age 6-12 yr (55-62 cm, lifespan 10-12 yr)": {
+        "hr": [
+          65,
+          100
+        ],
+        "resp": [
+          12,
+          24
+        ],
+        "activity": [
+          25,
+          70
+        ]
+      },
+      "German Shepherd — age 0-1 yr (55-65 cm, lifespan 9-13 yr)": {
+        "hr": [
+          100,
+          140
+        ],
+        "resp": [
+          18,
+          34
+        ],
+        "activity": [
+          45,
+          95
+        ]
+      },
+      "German Shepherd — age 1-7 yr (55-65 cm, lifespan 9-13 yr)": {
+        "hr": [
+          70,
+          110
+        ],
+        "resp": [
+          14,
+          26
+        ],
+        "activity": [
+          40,
+          90
+        ]
+      },
+      "German Shepherd — age 7-13 yr (55-65 cm, lifespan 9-13 yr)": {
+        "hr": [
+          65,
+          100
+        ],
+        "resp": [
+          12,
+          24
+        ],
+        "activity": [
+          25,
+          70
+        ]
+      },
+      "Golden Retriever — age 1-7 yr (55-61 cm, lifespan 10-12 yr)": {
+        "hr": [
+          70,
+          110
+        ],
+        "resp": [
+          14,
+          26
+        ],
+        "activity": [
+          40,
+          90
+        ]
+      },
+      "Golden Retriever — age 7-12 yr (55-61 cm, lifespan 10-12 yr)": {
+        "hr": [
+          65,
+          100
+        ],
+        "resp": [
+          12,
+          24
+        ],
+        "activity": [
+          25,
+          70
+        ]
+      },
+      "Great Dane — age 0-1 yr (71-86 cm, lifespan 8-10 yr)": {
+        "hr": [
+          100,
+          140
+        ],
+        "resp": [
+          16,
+          30
+        ],
+        "activity": [
+          35,
+          85
+        ]
+      },
+      "Great Dane — age 1-6 yr (71-86 cm, lifespan 8-10 yr)": {
+        "hr": [
+          60,
+          100
+        ],
+        "resp": [
+          12,
+          22
+        ],
+        "activity": [
+          25,
+          70
+        ]
+      },
+      "Great Dane — age 6-10 yr (71-86 cm, lifespan 8-10 yr)": {
+        "hr": [
+          55,
+          95
+        ],
+        "resp": [
+          10,
+          20
+        ],
+        "activity": [
+          15,
+          55
+        ]
+      }
+    }
+  },
+  "Cat": {
+    "temp": {
+      "min": 38.1,
+      "max": 39.5,
+      "unit": "°C"
+    },
+    "breeds": {
+      "Domestic Shorthair — age 0-1 yr (23-25 cm, lifespan 13-17 yr)": {
+        "hr": [
+          160,
+          220
+        ],
+        "resp": [
+          25,
+          40
+        ],
+        "activity": [
+          40,
+          95
+        ]
+      },
+      "Domestic Shorthair — age 1-11 yr (23-25 cm, lifespan 13-17 yr)": {
+        "hr": [
+          140,
+          200
+        ],
+        "resp": [
+          20,
+          30
+        ],
+        "activity": [
+          20,
+          70
+        ]
+      },
+      "Domestic Shorthair — age 11-17 yr (23-25 cm, lifespan 13-17 yr)": {
+        "hr": [
+          130,
+          190
+        ],
+        "resp": [
+          18,
+          30
+        ],
+        "activity": [
+          10,
+          55
+        ]
+      },
+      "Domestic Longhair — age 0-1 yr (23-28 cm, lifespan 12-16 yr)": {
+        "hr": [
+          160,
+          220
+        ],
+        "resp": [
+          25,
+          40
+        ],
+        "activity": [
+          40,
+          95
+        ]
+      },
+      "Domestic Longhair — age 1-11 yr (23-28 cm, lifespan 12-16 yr)": {
+        "hr": [
+          140,
+          200
+        ],
+        "resp": [
+          20,
+          30
+        ],
+        "activity": [
+          20,
+          70
+        ]
+      },
+      "Domestic Longhair — age 11-16 yr (23-28 cm, lifespan 12-16 yr)": {
+        "hr": [
+          130,
+          190
+        ],
+        "resp": [
+          18,
+          30
+        ],
+        "activity": [
+          10,
+          55
+        ]
+      },
+      "Siamese — age 0-1 yr (21-25 cm, lifespan 15-20 yr)": {
+        "hr": [
+          170,
+          230
+        ],
+        "resp": [
+          26,
+          42
+        ],
+        "activity": [
+          45,
+          95
+        ]
+      },
+      "Siamese — age 1-14 yr (21-25 cm, lifespan 15-20 yr)": {
+        "hr": [
+          150,
+          210
+        ],
+        "resp": [
+          22,
+          34
+        ],
+        "activity": [
+          30,
+          85
+        ]
+      },
+      "Siamese — age 14-20 yr (21-25 cm, lifespan 15-20 yr)": {
+        "hr": [
+          140,
+          200
+        ],
+        "resp": [
+          20,
+          32
+        ],
+        "activity": [
+          20,
+          70
+        ]
+      },
+      "Persian — age 0-1 yr (25-38 cm, lifespan 12-17 yr)": {
+        "hr": [
+          160,
+          220
+        ],
+        "resp": [
+          24,
+          38
+        ],
+        "activity": [
+          30,
+          80
+        ]
+      },
+      "Persian — age 1-12 yr (25-38 cm, lifespan 12-17 yr)": {
+        "hr": [
+          140,
+          200
+        ],
+        "resp": [
+          20,
+          30
+        ],
+        "activity": [
+          15,
+          60
+        ]
+      },
+      "Persian — age 12-17 yr (25-38 cm, lifespan 12-17 yr)": {
+        "hr": [
+          130,
+          190
+        ],
+        "resp": [
+          18,
+          28
+        ],
+        "activity": [
+          10,
+          50
+        ]
+      },
+      "Maine Coon — age 0-1 yr (25-40 cm, lifespan 12-15 yr)": {
+        "hr": [
+          150,
+          210
+        ],
+        "resp": [
+          22,
+          34
+        ],
+        "activity": [
+          35,
+          90
+        ]
+      },
+      "Maine Coon — age 1-10 yr (25-40 cm, lifespan 12-15 yr)": {
+        "hr": [
+          120,
+          180
+        ],
+        "resp": [
+          18,
+          28
+        ],
+        "activity": [
+          25,
+          75
+        ]
+      },
+      "Maine Coon — age 10-15 yr (25-40 cm, lifespan 12-15 yr)": {
+        "hr": [
+          115,
+          170
+        ],
+        "resp": [
+          16,
+          26
+        ],
+        "activity": [
+          15,
+          60
+        ]
+      },
+      "Ragdoll — age 0-1 yr (23-28 cm, lifespan 12-17 yr)": {
+        "hr": [
+          150,
+          210
+        ],
+        "resp": [
+          22,
+          34
+        ],
+        "activity": [
+          30,
+          85
+        ]
+      },
+      "Ragdoll — age 1-12 yr (23-28 cm, lifespan 12-17 yr)": {
+        "hr": [
+          120,
+          180
+        ],
+        "resp": [
+          18,
+          28
+        ],
+        "activity": [
+          20,
+          70
+        ]
+      },
+      "Ragdoll — age 12-17 yr (23-28 cm, lifespan 12-17 yr)": {
+        "hr": [
+          115,
+          170
+        ],
+        "resp": [
+          16,
+          26
+        ],
+        "activity": [
+          10,
+          55
+        ]
+      },
+      "Bengal — age 0-1 yr (20-25 cm, lifespan 12-16 yr)": {
+        "hr": [
+          170,
+          230
+        ],
+        "resp": [
+          26,
+          42
+        ],
+        "activity": [
+          50,
+          95
+        ]
+      },
+      "Bengal — age 1-12 yr (20-25 cm, lifespan 12-16 yr)": {
+        "hr": [
+          150,
+          210
+        ],
+        "resp": [
+          22,
+          34
+        ],
+        "activity": [
+          35,
+          90
+        ]
+      },
+      "Bengal — age 12-16 yr (20-25 cm, lifespan 12-16 yr)": {
+        "hr": [
+          140,
+          200
+        ],
+        "resp": [
+          20,
+          32
+        ],
+        "activity": [
+          20,
+          75
+        ]
+      },
+      "British Shorthair — age 1-14 yr (30-35 cm, lifespan 12-17 yr)": {
+        "hr": [
+          140,
+          200
+        ],
+        "resp": [
+          20,
+          30
+        ],
+        "activity": [
+          15,
+          65
+        ]
+      },
+      "British Shorthair — age 14-17 yr (30-35 cm, lifespan 12-17 yr)": {
+        "hr": [
+          130,
+          190
+        ],
+        "resp": [
+          18,
+          28
+        ],
+        "activity": [
+          10,
+          50
+        ]
+      },
+      "Sphynx — age 1-13 yr (20-25 cm, lifespan 8-14 yr)": {
+        "hr": [
+          150,
+          210
+        ],
+        "resp": [
+          22,
+          34
+        ],
+        "activity": [
+          25,
+          80
+        ]
+      },
+      "Scottish Fold — age 1-13 yr (20-25 cm, lifespan 11-15 yr)": {
+        "hr": [
+          140,
+          200
+        ],
+        "resp": [
+          20,
+          30
+        ],
+        "activity": [
+          20,
+          70
+        ]
+      },
+      "Abyssinian — age 1-13 yr (20-25 cm, lifespan 12-15 yr)": {
+        "hr": [
+          150,
+          210
+        ],
+        "resp": [
+          22,
+          34
+        ],
+        "activity": [
+          35,
+          90
+        ]
+      },
+      "Russian Blue — age 1-15 yr (23-28 cm, lifespan 15-20 yr)": {
+        "hr": [
+          140,
+          200
+        ],
+        "resp": [
+          20,
+          30
+        ],
+        "activity": [
+          20,
+          70
+        ]
+      },
+      "Norwegian Forest — age 1-14 yr (23-30 cm, lifespan 14-16 yr)": {
+        "hr": [
+          120,
+          180
+        ],
+        "resp": [
+          18,
+          28
+        ],
+        "activity": [
+          25,
+          75
+        ]
+      },
+      "Birman — age 1-14 yr (20-25 cm, lifespan 12-16 yr)": {
+        "hr": [
+          140,
+          200
+        ],
+        "resp": [
+          20,
+          30
+        ],
+        "activity": [
+          20,
+          70
+        ]
+      },
+      "Burmese — age 1-15 yr (20-25 cm, lifespan 16-18 yr)": {
+        "hr": [
+          150,
+          210
+        ],
+        "resp": [
+          22,
+          34
+        ],
+        "activity": [
+          30,
+          85
+        ]
+      },
+      "Devon Rex — age 1-13 yr (18-25 cm, lifespan 9-15 yr)": {
+        "hr": [
+          150,
+          210
+        ],
+        "resp": [
+          22,
+          34
+        ],
+        "activity": [
+          30,
+          85
+        ]
+      },
+      "Oriental Shorthair — age 1-14 yr (20-25 cm, lifespan 12-15 yr)": {
+        "hr": [
+          160,
+          220
+        ],
+        "resp": [
+          24,
+          36
+        ],
+        "activity": [
+          35,
+          90
+        ]
+      },
+      "Exotic Shorthair — age 1-13 yr (25-30 cm, lifespan 12-15 yr)": {
+        "hr": [
+          140,
+          200
+        ],
+        "resp": [
+          20,
+          30
+        ],
+        "activity": [
+          15,
+          60
+        ]
+      },
+      "American Shorthair — age 1-15 yr (23-30 cm, lifespan 15-20 yr)": {
+        "hr": [
+          140,
+          200
+        ],
+        "resp": [
+          20,
+          30
+        ],
+        "activity": [
+          20,
+          70
+        ]
+      }
+    }
+  },
+  "Rabbit": {
+    "temp": {
+      "min": 38.5,
+      "max": 40.0,
+      "unit": "°C"
+    },
+    "breeds": {
+      "Netherland Dwarf — age 0-1 yr (15-20 cm, lifespan 10-12 yr)": {
+        "hr": [
+          200,
+          280
+        ],
+        "resp": [
+          35,
+          65
+        ],
+        "activity": [
+          20,
+          65
+        ]
+      },
+      "Netherland Dwarf — age 1-10 yr (15-20 cm, lifespan 10-12 yr)": {
+        "hr": [
+          180,
+          250
+        ],
+        "resp": [
+          32,
+          60
+        ],
+        "activity": [
+          15,
+          55
+        ]
+      },
+      "Holland Lop — age 1-9 yr (18-25 cm, lifespan 7-12 yr)": {
+        "hr": [
+          180,
+          250
+        ],
+        "resp": [
+          32,
+          60
+        ],
+        "activity": [
+          15,
+          55
+        ]
+      },
+      "Mini Rex — age 1-8 yr (20-30 cm, lifespan 8-12 yr)": {
+        "hr": [
+          180,
+          250
+        ],
+        "resp": [
+          32,
+          60
+        ],
+        "activity": [
+          15,
+          55
+        ]
+      },
+      "Lionhead — age 1-9 yr (20-28 cm, lifespan 7-10 yr)": {
+        "hr": [
+          180,
+          250
+        ],
+        "resp": [
+          32,
+          60
+        ],
+        "activity": [
+          15,
+          55
+        ]
+      },
+      "New Zealand White — age 1-8 yr (35-45 cm, lifespan 7-10 yr)": {
+        "hr": [
+          160,
+          220
+        ],
+        "resp": [
+          30,
+          55
+        ],
+        "activity": [
+          12,
+          50
+        ]
+      },
+      "Flemish Giant — age 1-8 yr (45-55 cm, lifespan 8-12 yr)": {
+        "hr": [
+          140,
+          200
+        ],
+        "resp": [
+          30,
+          55
+        ],
+        "activity": [
+          10,
+          45
+        ]
+      }
+    }
+  },
+  "Ferret": {
+    "temp": {
+      "min": 37.8,
+      "max": 40.0,
+      "unit": "°C"
+    },
+    "breeds": {
+      "Standard Ferret — age 0-1 yr (13-18 cm, lifespan 6-8 yr)": {
+        "hr": [
+          200,
+          280
+        ],
+        "resp": [
+          34,
+          40
+        ],
+        "activity": [
+          40,
+          95
+        ]
+      },
+      "Standard Ferret — age 1-6 yr (13-18 cm, lifespan 6-8 yr)": {
+        "hr": [
+          180,
+          250
+        ],
+        "resp": [
+          33,
+          36
+        ],
+        "activity": [
+          30,
+          90
+        ]
+      },
+      "Angora Ferret — age 1-6 yr (13-20 cm, lifespan 6-8 yr)": {
+        "hr": [
+          180,
+          250
+        ],
+        "resp": [
+          33,
+          36
+        ],
+        "activity": [
+          30,
+          90
+        ]
+      }
+    }
+  },
+  "GuineaPig": {
+    "temp": {
+      "min": 37.2,
+      "max": 39.5,
+      "unit": "°C"
+    },
+    "breeds": {
+      "American Guinea Pig — age 1-7 yr (10-13 cm, lifespan 5-8 yr)": {
+        "hr": [
+          230,
+          300
+        ],
+        "resp": [
+          42,
+          100
+        ],
+        "activity": [
+          20,
+          70
+        ]
+      },
+      "Abyssinian Guinea Pig — age 1-7 yr (10-13 cm, lifespan 5-8 yr)": {
+        "hr": [
+          230,
+          300
+        ],
+        "resp": [
+          42,
+          100
+        ],
+        "activity": [
+          20,
+          70
+        ]
+      }
+    }
+  },
+  "Hamster": {
+    "temp": {
+      "min": 36.2,
+      "max": 37.5,
+      "unit": "°C"
+    },
+    "breeds": {
+      "Syrian Hamster — age 0-2 yr (5-10 cm, lifespan 2-3 yr)": {
+        "hr": [
+          300,
+          500
+        ],
+        "resp": [
+          35,
+          135
+        ],
+        "activity": [
+          30,
+          90
+        ]
+      },
+      "Dwarf Hamster — age 0-2 yr (5-8 cm, lifespan 2-3 yr)": {
+        "hr": [
+          300,
+          500
+        ],
+        "resp": [
+          35,
+          135
+        ],
+        "activity": [
+          30,
+          90
+        ]
+      }
+    }
+  },
+  "Cow": {
+    "temp": {
+      "min": 38.0,
+      "max": 39.3,
+      "unit": "°C"
+    },
+    "breeds": {
+      "Holstein Dairy — age 0-1 yr (80-110 cm, lifespan 18-22 yr)": {
+        "hr": [
+          100,
+          140
+        ],
+        "resp": [
+          30,
+          60
+        ],
+        "activity": [
+          30,
+          85
+        ]
+      },
+      "Holstein Dairy — age 1-12 yr (140-165 cm, lifespan 18-22 yr)": {
+        "hr": [
+          48,
+          84
+        ],
+        "resp": [
+          26,
+          50
+        ],
+        "activity": [
+          20,
+          70
+        ]
+      },
+      "Jersey Dairy — age 1-15 yr (115-135 cm, lifespan 18-22 yr)": {
+        "hr": [
+          48,
+          84
+        ],
+        "resp": [
+          26,
+          50
+        ],
+        "activity": [
+          20,
+          70
+        ]
+      },
+      "Angus Beef — age 1-12 yr (130-150 cm, lifespan 18-22 yr)": {
+        "hr": [
+          40,
+          70
+        ],
+        "resp": [
+          20,
+          40
+        ],
+        "activity": [
+          20,
+          70
+        ]
+      },
+      "Hereford Beef — age 1-12 yr (125-145 cm, lifespan 18-22 yr)": {
+        "hr": [
+          40,
+          70
+        ],
+        "resp": [
+          20,
+          40
+        ],
+        "activity": [
+          20,
+          70
+        ]
+      }
+    }
+  },
+  "Horse": {
+    "temp": {
+      "min": 37.2,
+      "max": 38.3,
+      "unit": "°C"
+    },
+    "breeds": {
+      "Thoroughbred — age 0-1 yr (100-120 cm, lifespan 25-30 yr)": {
+        "hr": [
+          70,
+          100
+        ],
+        "resp": [
+          20,
+          40
+        ],
+        "activity": [
+          30,
+          90
+        ]
+      },
+      "Thoroughbred — age 1-18 yr (155-170 cm, lifespan 25-30 yr)": {
+        "hr": [
+          28,
+          44
+        ],
+        "resp": [
+          8,
+          16
+        ],
+        "activity": [
+          20,
+          80
+        ]
+      },
+      "Thoroughbred — age 18-30 yr (155-170 cm, lifespan 25-30 yr)": {
+        "hr": [
+          30,
+          48
+        ],
+        "resp": [
+          10,
+          18
+        ],
+        "activity": [
+          15,
+          65
+        ]
+      },
+      "Arabian — age 1-25 yr (144-155 cm, lifespan 25-35 yr)": {
+        "hr": [
+          28,
+          44
+        ],
+        "resp": [
+          8,
+          16
+        ],
+        "activity": [
+          25,
+          85
+        ]
+      },
+      "Clydesdale — age 1-20 yr (163-183 cm, lifespan 20-25 yr)": {
+        "hr": [
+          26,
+          40
+        ],
+        "resp": [
+          8,
+          16
+        ],
+        "activity": [
+          15,
+          70
+        ]
+      },
+      "Shetland Pony — age 1-25 yr (70-107 cm, lifespan 25-30 yr)": {
+        "hr": [
+          32,
+          48
+        ],
+        "resp": [
+          10,
+          18
+        ],
+        "activity": [
+          25,
+          80
+        ]
+      }
+    }
+  },
+  "Sheep": {
+    "temp": {
+      "min": 38.5,
+      "max": 40.0,
+      "unit": "°C"
+    },
+    "breeds": {
+      "Merino — age 1-14 yr (60-90 cm, lifespan 10-14 yr)": {
+        "hr": [
+          60,
+          90
+        ],
+        "resp": [
+          16,
+          34
+        ],
+        "activity": [
+          20,
+          70
+        ]
+      },
+      "Suffolk — age 1-15 yr (65-95 cm, lifespan 10-15 yr)": {
+        "hr": [
+          60,
+          90
+        ],
+        "resp": [
+          16,
+          34
+        ],
+        "activity": [
+          20,
+          70
+        ]
+      },
+      "Lamb — age 0-1 yr (40-55 cm, lifespan 10-15 yr)": {
+        "hr": [
+          100,
+          130
+        ],
+        "resp": [
+          20,
+          40
+        ],
+        "activity": [
+          30,
+          85
+        ]
+      }
+    }
+  },
+  "Goat": {
+    "temp": {
+      "min": 38.5,
+      "max": 39.7,
+      "unit": "°C"
+    },
+    "breeds": {
+      "Nubian — age 1-15 yr (75-95 cm, lifespan 12-18 yr)": {
+        "hr": [
+          70,
+          90
+        ],
+        "resp": [
+          15,
+          30
+        ],
+        "activity": [
+          25,
+          80
+        ]
+      },
+      "Boer — age 1-12 yr (60-90 cm, lifespan 12-15 yr)": {
+        "hr": [
+          70,
+          90
+        ],
+        "resp": [
+          15,
+          30
+        ],
+        "activity": [
+          25,
+          80
+        ]
+      },
+      "Pygmy — age 1-15 yr (40-58 cm, lifespan 12-15 yr)": {
+        "hr": [
+          70,
+          95
+        ],
+        "resp": [
+          15,
+          32
+        ],
+        "activity": [
+          25,
+          85
+        ]
+      }
+    }
+  },
+  "Pig": {
+    "temp": {
+      "min": 38.7,
+      "max": 39.8,
+      "unit": "°C"
+    },
+    "breeds": {
+      "Yorkshire — age 1-12 yr (80-100 cm, lifespan 15-20 yr)": {
+        "hr": [
+          60,
+          90
+        ],
+        "resp": [
+          12,
+          24
+        ],
+        "activity": [
+          20,
+          70
+        ]
+      },
+      "Berkshire — age 1-12 yr (70-90 cm, lifespan 15-20 yr)": {
+        "hr": [
+          60,
+          90
+        ],
+        "resp": [
+          12,
+          24
+        ],
+        "activity": [
+          20,
+          70
+        ]
+      },
+      "Piglet — age 0-1 yr (20-35 cm, lifespan 15-20 yr)": {
+        "hr": [
+          100,
+          130
+        ],
+        "resp": [
+          20,
+          40
+        ],
+        "activity": [
+          30,
+          85
+        ]
+      }
+    }
+  },
+  "Chicken": {
+    "temp": {
+      "min": 40.6,
+      "max": 41.7,
+      "unit": "°C"
+    },
+    "breeds": {
+      "Laying Hen — age 0-8 yr (30-45 cm, lifespan 5-10 yr)": {
+        "hr": [
+          250,
+          350
+        ],
+        "resp": [
+          15,
+          30
+        ],
+        "activity": [
+          20,
+          80
+        ]
+      },
+      "Broiler — age 0-2 yr (25-40 cm, lifespan 5-7 yr)": {
+        "hr": [
+          250,
+          350
+        ],
+        "resp": [
+          15,
+          30
+        ],
+        "activity": [
+          15,
+          70
+        ]
+      }
+    }
+  },
+  "Cattle": {
+    "temp": {
+      "min": 38.0,
+      "max": 39.3,
+      "unit": "°C"
+    },
+    "breeds": {
+      "Adult Bull — age 1-20 yr (160-185 cm, lifespan 18-20 yr)": {
+        "hr": [
+          36,
+          60
+        ],
+        "resp": [
+          18,
+          36
+        ],
+        "activity": [
+          20,
+          70
+        ]
+      }
+    }
+  },
+  "Elephant": {
+    "temp": {
+      "min": 35.9,
+      "max": 37.2,
+      "unit": "°C"
+    },
+    "breeds": {
+      "African Elephant — age 0-15 yr (120-200 cm, lifespan 60-70 yr)": {
+        "hr": [
+          30,
+          50
+        ],
+        "resp": [
+          6,
+          14
+        ],
+        "activity": [
+          20,
+          65
+        ]
+      },
+      "African Elephant — age 15-70 yr (300-400 cm, lifespan 60-70 yr)": {
+        "hr": [
+          25,
+          35
+        ],
+        "resp": [
+          4,
+          12
+        ],
+        "activity": [
+          15,
+          60
+        ]
+      },
+      "Asian Elephant — age 15-70 yr (250-300 cm, lifespan 60-70 yr)": {
+        "hr": [
+          28,
+          40
+        ],
+        "resp": [
+          4,
+          12
+        ],
+        "activity": [
+          15,
+          60
+        ]
+      }
+    }
+  },
+  "Lion": {
+    "temp": {
+      "min": 38.0,
+      "max": 39.3,
+      "unit": "°C"
+    },
+    "breeds": {
+      "African Lion — age 2-16 yr (100-120 cm, lifespan 15-16 yr)": {
+        "hr": [
+          40,
+          76
+        ],
+        "resp": [
+          10,
+          30
+        ],
+        "activity": [
+          15,
+          80
+        ]
+      }
+    }
+  },
+  "Tiger": {
+    "temp": {
+      "min": 37.8,
+      "max": 39.3,
+      "unit": "°C"
+    },
+    "breeds": {
+      "Bengal Tiger — age 2-18 yr (90-110 cm, lifespan 16-18 yr)": {
+        "hr": [
+          40,
+          70
+        ],
+        "resp": [
+          10,
+          30
+        ],
+        "activity": [
+          15,
+          80
+        ]
+      }
+    }
+  },
+  "Giraffe": {
+    "temp": {
+      "min": 37.5,
+      "max": 39.0,
+      "unit": "°C"
+    },
+    "breeds": {
+      "Reticulated Giraffe — age 2-25 yr (450-550 cm, lifespan 20-25 yr)": {
+        "hr": [
+          40,
+          90
+        ],
+        "resp": [
+          8,
+          20
+        ],
+        "activity": [
+          15,
+          70
+        ]
+      }
+    }
+  },
+  "Bear": {
+    "temp": {
+      "min": 37.0,
+      "max": 38.3,
+      "unit": "°C"
+    },
+    "breeds": {
+      "Brown Bear — age 2-30 yr (90-150 cm, lifespan 20-30 yr)": {
+        "hr": [
+          40,
+          70
+        ],
+        "resp": [
+          15,
+          30
+        ],
+        "activity": [
+          10,
+          70
+        ]
+      }
+    }
+  },
+  "Zebra": {
+    "temp": {
+      "min": 37.5,
+      "max": 38.5,
+      "unit": "°C"
+    },
+    "breeds": {
+      "Plains Zebra — age 1-25 yr (120-140 cm, lifespan 20-25 yr)": {
+        "hr": [
+          34,
+          52
+        ],
+        "resp": [
+          10,
+          20
+        ],
+        "activity": [
+          20,
+          80
+        ]
+      }
+    }
+  },
+  "Llama": {
+    "temp": {
+      "min": 37.5,
+      "max": 38.9,
+      "unit": "°C"
+    },
+    "breeds": {
+      "Llama/Alpaca — age 1-25 yr (90-120 cm, lifespan 15-25 yr)": {
+        "hr": [
+          60,
+          90
+        ],
+        "resp": [
+          10,
+          30
+        ],
+        "activity": [
+          20,
+          75
+        ]
+      }
+    }
+  },
+  "Deer": {
+    "temp": {
+      "min": 38.3,
+      "max": 39.4,
+      "unit": "°C"
+    },
+    "breeds": {
+      "Farmed Deer — age 1-20 yr (80-120 cm, lifespan 10-20 yr)": {
+        "hr": [
+          40,
+          70
+        ],
+        "resp": [
+          12,
+          30
+        ],
+        "activity": [
+          25,
+          85
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,18 @@
+# Python virtual environment (installed libraries — not our code)
+.venv/
+
+# Python caches and build artifacts
+__pycache__/
+*.pyc
+*.egg-info/
+build/
+dist/
+
+# Demo data the app writes while running (regenerated on each run)
+pawwatch/pets.json
+pawwatch/history.json
+pawwatch/notifications.json
+pawwatch/last_seen.json
+
+# OS clutter
+.DS_Store

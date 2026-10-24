@@ -1,0 +1,38 @@
+"animal_group","species","breed_or_type","age_stage","size_band","hr_min","hr_max","resp_min","resp_max","temp_min_c","temp_max_c","activity_min","activity_max"
+"Pet","Dog","Chihuahua","adult","toy",100,140,18,34,38.3,39.2,20,60
+"Pet","Dog","Yorkshire Terrier","adult","toy",100,140,18,34,38.3,39.2,20,60
+"Pet","Dog","Pomeranian","adult","toy",100,140,18,34,38.3,39.2,20,60
+"Pet","Dog","Beagle","adult","small",90,130,16,30,38.3,39.2,30,80
+"Pet","Dog","French Bulldog","adult","small",90,130,16,30,38.3,39.2,25,70
+"Pet","Dog","Border Collie","adult","medium",80,120,14,28,38.3,39.2,45,95
+"Pet","Dog","Labrador Retriever","adult","large",70,110,14,26,38.3,39.2,40,90
+"Pet","Dog","German Shepherd","adult","large",70,110,14,26,38.3,39.2,40,90
+"Pet","Dog","Golden Retriever","adult","large",70,110,14,26,38.3,39.2,40,90
+"Pet","Dog","Great Dane","adult","giant",60,100,12,22,38.3,39.2,25,70
+"Pet","Dog","Saint Bernard","adult","giant",60,100,12,22,38.3,39.2,20,65
+"Pet","Dog","Mixed Puppy","puppy","small",120,160,20,40,38.3,39.5,40,95
+"Pet","Cat","Domestic Shorthair","adult","small",140,200,20,30,38.1,39.2,20,70
+"Pet","Cat","Maine Coon","adult","large",120,180,18,28,38.1,39.2,25,75
+"Pet","Cat","Siamese","adult","small",150,210,22,34,38.1,39.2,30,85
+"Pet","Cat","Persian","adult","small",140,200,20,30,38.1,39.2,15,60
+"Pet","Cat","Kitten","kitten","toy",160,220,25,40,38.1,39.5,40,95
+"Pet","Rabbit","Mini Rex","adult","toy",180,250,32,60,38.5,40,15,55
+"Pet","Rabbit","Flemish Giant","adult","small",140,200,30,55,38.5,40,10,45
+"Pet","Ferret","Standard Ferret","adult","toy",180,250,33,36,37.8,40,30,90
+"Farm","Cow","Holstein Dairy","adult","giant",48,84,26,50,38,39.3,20,70
+"Farm","Cow","Angus Beef","adult","giant",40,70,20,40,38,39.3,20,70
+"Farm","Cow","Calf","calf","large",100,140,30,60,38,39.3,30,85
+"Farm","Horse","Thoroughbred","adult","giant",28,44,8,16,37.2,38.3,20,80
+"Farm","Horse","Pony","adult","large",32,48,10,18,37.2,38.3,25,80
+"Farm","Horse","Foal","foal","large",70,100,20,40,37.2,38.3,30,90
+"Farm","Sheep","Adult Sheep","adult","medium",60,90,16,34,38.5,40,20,70
+"Farm","Sheep","Lamb","lamb","small",100,130,20,40,38.5,40,30,85
+"Farm","Goat","Adult Goat","adult","medium",70,90,15,30,38.5,39.7,25,80
+"Farm","Goat","Kid","kid","small",100,130,20,40,38.5,39.7,35,90
+"Farm","Pig","Adult Pig","adult","large",60,90,12,24,38.7,39.8,20,70
+"Farm","Pig","Piglet","piglet","small",100,130,20,40,38.7,39.8,30,85
+"Large","Cattle","Adult Bull","adult","giant",36,60,18,36,38,39.3,20,70
+"Large","Elephant","African Elephant","adult","giant",25,35,4,12,35.9,37.2,15,60
+"Large","Elephant","Asian Elephant","adult","giant",28,40,4,12,35.9,37.2,15,60
+"Large","Llama","Llama/Alpaca","adult","large",60,90,10,30,37.5,38.9,20,75
+"Large","Deer","Farmed Deer","adult","large",40,70,12,30,38.3,39.4,25,85
